@@ -1,6 +1,6 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
-
+#include "Actions\LoadAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -60,6 +60,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 			break;
 
+		case LOAD:
+			newAct = new LoadAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -113,6 +116,11 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+}
+void ApplicationManager::DeleteList() {
+	for (int i = 0; i < FigCount; i++)
+		FigList[i]==NULL;
+	FigCount = 0;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface

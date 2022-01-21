@@ -86,7 +86,8 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
-			case ITM_EXIT: return EXIT;	
+			case ITM_EXIT: return EXIT;
+			case ITM_LOAD: return LOAD;
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -152,6 +153,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -229,9 +231,9 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 		style = FRAME;
 
 	
-	//pWind->DrawRectangle(P1.x, P1.y, P1.x +length, P1.y+length, style);
+	pWind->DrawRectangle(P1.x, P1.y, P1.x +length, P1.y+length, style);
 	//pWind->DrawLine(P1.x, P1.y, P1.x + length, P1.y + length, style);
-	pWind->DrawEllipse(P1.x, P1.y, P1.x + length, P1.y + length, style);
+	//pWind->DrawEllipse(P1.x, P1.y, P1.x + length, P1.y + length, style);
 
 }
 
