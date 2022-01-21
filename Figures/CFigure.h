@@ -13,14 +13,18 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	
 	/// Add more parameters if needed.
+	color storedDraw, storedFill;
+	bool IsFilled;
 
 public:
 	CFigure(GfxInfo FigureGfxInfo);
+	CFigure();
 	void SetSelected(bool );	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-
+	void setStored();
 	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
-	
+	virtual void Load(ifstream& inputFile) = 0;
+	virtual color StringToColor(string s) ;
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
