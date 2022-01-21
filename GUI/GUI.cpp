@@ -86,6 +86,8 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
+			case ITM_BACK: return SEND_BACK;
+			case ITM_FRONT: return BRNG_FRNT;
 			case ITM_EXIT: return EXIT;
 			case ITM_LOAD: return LOAD;
 			
@@ -152,6 +154,8 @@ void GUI::CreateDrawToolBar() const
 	string MenuItemImages[DRAW_ITM_COUNT];
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Menu_Front.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 
