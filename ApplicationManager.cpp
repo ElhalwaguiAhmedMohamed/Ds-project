@@ -13,7 +13,6 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
-	//Bla Bla Bla
 }
 
 void ApplicationManager::Run()
