@@ -1,5 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
+#include "Actions\ActionAddEllipse.h"
+#include "Actions\ActionAddHex.h"
 #include "Actions\LoadAction.h"
 
 //Constructor
@@ -57,7 +59,10 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 		case DRAW_ELPS:
 			///create AddLineAction here
-
+			newAct = new ActionAddEllipse(this);
+			break;
+		case DRAW_HEX:
+			newAct = new ActionAddHex(this);
 			break;
 
 		case LOAD:
