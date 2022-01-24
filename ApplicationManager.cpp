@@ -3,7 +3,10 @@
 #include "Actions\ActionAddEllipse.h"
 #include "Actions\ActionAddHex.h"
 #include "Actions\LoadAction.h"
-
+#include "Actions/ActionSave.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -64,7 +67,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new ActionAddHex(this);
 			break;
+		
 
+		case SAVE:
+			newAct = new ActionSave(this);
+			break;
 		case LOAD:
 			newAct = new LoadAction(this);
 			break;
@@ -90,6 +97,19 @@ void ApplicationManager::ExecuteAction(Action* &pAct)
 		delete pAct;	//Action is not needed any more ==> delete it
 		pAct = NULL;
 	}
+}
+void ApplicationManager::SaveAll(ofstream &outputfile)
+{
+	// Figure save Functions Run
+	if (outputfile.is_open())
+	{
+		outputfile << to_string(FigCount) << "\n";
+		for (int i = 0; i < FigCount; i++)
+		{
+			FigList[i]->Save(outputfile);
+		}
+	}
+	
 }
 //==================================================================================//
 //						Figures Management Functions								//

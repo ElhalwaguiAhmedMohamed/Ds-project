@@ -17,7 +17,7 @@ LoadAction :: LoadAction(ApplicationManager *pMan) :Action(pMan) //chain
 void LoadAction::ReadParameters() 
 {
 	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("Please write the file you want to load ;)");
+	pGui->PrintMessage("Please write the file you want to load :)");
 	FileName = pGui->GetSrting(); //get the written string from the user
 
 }
@@ -37,7 +37,7 @@ void LoadAction::Execute()
 	pGui->ClearDrawArea(); //clear the current gui from any shapes
 	//check if the file opened successfully 
 	if (inputFile.fail()) {
-		pGui->PrintMessage("Wrong file name :,(");
+		pGui->PrintMessage("Wrong file name :(");
 		return;
 	}
 	//if the file opened successfully
@@ -66,7 +66,7 @@ void LoadAction::Execute()
 	}
 
 	pManager->UpdateInterface();
-	pGui->PrintMessage("Graph loaded successfully ;)");
+	pGui->PrintMessage("Graph loaded successfully :)");
 	pGui->ClearStatusBar();
 	pGui->CreateStatusBar();
 

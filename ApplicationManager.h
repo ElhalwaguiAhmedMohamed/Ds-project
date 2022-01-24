@@ -3,7 +3,7 @@
 
 #include "DEFS.h"
 #include "Figures\CFigure.h"
-
+#include <fstream>
 class Action;	//Forward Declaration
 
 
@@ -18,7 +18,6 @@ private:
 
 	//Pointers to Input and Output classes
 	GUI* pGUI;
-	
 
 public:	
 	ApplicationManager(); 
@@ -29,11 +28,13 @@ public:
 	// -- Action-Related Functions
 	Action* CreateAction(ActionType);
 	void ExecuteAction(Action*&) ; //Execute an action
+
+	
 	
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-		
+	void SaveAll(ofstream&);
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window	
