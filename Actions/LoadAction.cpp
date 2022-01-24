@@ -6,6 +6,8 @@
 #include "..\GUI\Input.h"
 #include "..\GUI\\Output.h"
 #include "../Figures//CSquare.h"
+#include "..\Figures\CHex.h"
+#include "../Figures/CEllipse.h"
 
 LoadAction :: LoadAction(ApplicationManager *pMan) :Action(pMan) //chain 
 {
@@ -51,6 +53,13 @@ void LoadAction::Execute()
 		if (shape == "SQR") {
 			figure = new CSquare; 
 		}
+		else if (shape == "HEX") {
+			figure = new CHex;
+		}
+		else if (shape == "ELLIPSE") {
+			figure = new CEllipse;
+		}
+		
 		figure->Load(inputFile);
 		pManager->AddFigure(figure);
 		numberOfShapes--;

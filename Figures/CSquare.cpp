@@ -20,7 +20,7 @@ void CSquare::DrawMe(GUI* pGUI) const
 
 void CSquare::Load(ifstream &inputFile) {
 	string borderColor , fillColor;
-	int borderWidth; //to read the width of each figure's border
+	//int borderWidth; //to read the width of each figure's border
 	inputFile>>ID >> TopLeftCorner.x >> TopLeftCorner.y>>length ;
 
 	
