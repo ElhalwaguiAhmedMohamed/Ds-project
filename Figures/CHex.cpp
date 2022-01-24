@@ -44,3 +44,24 @@ void CHex::DrawMe(GUI* pGUI) const
 	pGUI->DrawHex(TopLeft, Llen, Rlen, FigGfxInfo, Selected);
 	
 }
+void CHex::Save(ofstream& outputFile)
+{
+	if (outputFile.is_open())
+	{
+		/*cout << "here" << endl;*/
+		outputFile << "HEX"
+			<< " " << ID
+			<< " " << TopLeft.x
+			<< " " << TopLeft.y
+			<< " " << Llen
+			<< " " << Rlen
+			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+		if (!this->FigGfxInfo.isFilled)
+			outputFile << " " << "NO-FILL";
+		else
+			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+		outputFile << "\n";
+	}
+
+
+}

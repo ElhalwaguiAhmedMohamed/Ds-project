@@ -41,6 +41,10 @@ color CFigure::StringToColor(string s) {
 		return MAGENTA;
 	if (s == "TURQUOISE")
 		return TURQUOISE;
+	if (s == "SKYBLUE")
+		return SKYBLUE;
+	if (s == "LIGHTSTEELBLUE")
+		return LIGHTSTEELBLUE;
 	return BLACK;
 }
 
@@ -63,7 +67,11 @@ string CFigure::ColorToString(color c) {
 		return "MAGENTA";
 	if ((c.ucBlue == TURQUOISE.ucBlue) && (c.ucGreen == TURQUOISE.ucGreen) && (c.ucRed == TURQUOISE.ucRed))
 		return "TURQUOISE";
-	return "NO_FILL";
+	if ((c.ucBlue == SKYBLUE.ucBlue) && (c.ucGreen == SKYBLUE.ucGreen) && (c.ucRed == SKYBLUE.ucRed))
+		return "SKYBLUE";
+	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
+		return "LIGHTSTEELBLUE";
+	return "NO-FILL";
 }
 
 void CFigure::setStored()

@@ -47,3 +47,24 @@ void CEllipse::DrawMe(GUI* pGUI) const
 
 
 }
+
+void CEllipse::Save(ofstream& outputFile)
+{
+	if (outputFile.is_open())
+	{
+		/*cout << "here" << endl;*/
+		outputFile << "ELLIPSE"
+			<< " " << ID
+			<< " " << center.x
+			<< " " << center.y
+			<< " " << radius
+			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+		if (!this->FigGfxInfo.isFilled)
+			outputFile << " " << "NO-FILL";
+		else
+			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+		outputFile << "\n";
+	}
+
+
+}

@@ -21,7 +21,7 @@ void CSquare::Save(ofstream& outputFile)
 			<< " " << length
 			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO_FILL";
+			outputFile << " " << "NO-FILL";
 		else
 			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";

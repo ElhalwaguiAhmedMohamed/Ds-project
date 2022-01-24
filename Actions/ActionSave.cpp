@@ -1,7 +1,8 @@
 #include<iostream>
 #include "ActionSave.h"
 #include "..\Figures\CSquare.h"
-
+#include "..\Figures\CEllipse.h"
+#include "..\Figures\CHex.h"
 #include "..\ApplicationManager.h"
 
 #include "..\GUI\GUI.h"
@@ -69,5 +70,9 @@ string ActionSave::ColorToString(color c) {
 		return "MAGENTA";
 	if ((c.ucBlue == TURQUOISE.ucBlue) && (c.ucGreen == TURQUOISE.ucGreen) && (c.ucRed == TURQUOISE.ucRed))
 		return "TURQUOISE";
-	return "NO_FILL";
+	if ((c.ucBlue == SKYBLUE.ucBlue) && (c.ucGreen == SKYBLUE.ucGreen) && (c.ucRed == SKYBLUE.ucRed))
+		return "SKYBLUE";
+	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
+		return "LIGHTSTEELBLUE";
+	return "NO-FILL";
 }

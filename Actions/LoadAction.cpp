@@ -106,5 +106,9 @@ color LoadAction::convertToColor(string s) {
 		return MAGENTA;
 	if (s == "TURQUOISE")
 		return TURQUOISE;
+	if (s == "SKYBLUE")
+		return SKYBLUE;
+	if (s == "LIGHTSTEELBLUE")
+		return LIGHTSTEELBLUE;
 	return BLACK;
 }
