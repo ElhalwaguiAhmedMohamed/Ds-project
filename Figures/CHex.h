@@ -15,6 +15,7 @@ public:
 	CHex();
 	CHex(Point, int, int, GfxInfo FigureGfxInfo);
 	virtual void Load(ifstream& inputfile);
+	virtual void Save(ofstream& outputfile);
 	virtual void DrawMe(GUI* pOut) const;
 
 };

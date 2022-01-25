@@ -6,6 +6,8 @@
 #include "..\GUI\Input.h"
 #include "..\GUI\\Output.h"
 #include "../Figures//CSquare.h"
+#include "..\Figures\CHex.h"
+#include "../Figures/CEllipse.h"
 
 LoadAction :: LoadAction(ApplicationManager *pMan) :Action(pMan) //chain 
 {
@@ -15,7 +17,7 @@ LoadAction :: LoadAction(ApplicationManager *pMan) :Action(pMan) //chain
 void LoadAction::ReadParameters() 
 {
 	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("Please write the file you want to load ;)");
+	pGui->PrintMessage("Please write the file you want to load :)");
 	FileName = pGui->GetSrting(); //get the written string from the user
 
 }
@@ -35,7 +37,7 @@ void LoadAction::Execute()
 	pGui->ClearDrawArea(); //clear the current gui from any shapes
 	//check if the file opened successfully 
 	if (inputFile.fail()) {
-		pGui->PrintMessage("Wrong file name :,(");
+		pGui->PrintMessage("Wrong file name :(");
 		return;
 	}
 	//if the file opened successfully
@@ -51,13 +53,20 @@ void LoadAction::Execute()
 		if (shape == "SQR") {
 			figure = new CSquare; 
 		}
+		else if (shape == "HEX") {
+			figure = new CHex;
+		}
+		else if (shape == "ELLIPSE") {
+			figure = new CEllipse;
+		}
+		
 		figure->Load(inputFile);
 		pManager->AddFigure(figure);
 		numberOfShapes--;
 	}
 
 	pManager->UpdateInterface();
-	pGui->PrintMessage("Graph loaded successfully ;)");
+	pGui->PrintMessage("Graph loaded successfully :)");
 	pGui->ClearStatusBar();
 	pGui->CreateStatusBar();
 
@@ -97,5 +106,9 @@ color LoadAction::convertToColor(string s) {
 		return MAGENTA;
 	if (s == "TURQUOISE")
 		return TURQUOISE;
+	if (s == "SKYBLUE")
+		return SKYBLUE;
+	if (s == "LIGHTSTEELBLUE")
+		return LIGHTSTEELBLUE;
 	return BLACK;
 }

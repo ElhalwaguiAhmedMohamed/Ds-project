@@ -8,6 +8,27 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 	TopLeftCorner = P1;
 	length = len;
 }
+
+void CSquare::Save(ofstream& outputFile)
+{
+	if (outputFile.is_open())
+	{
+		/*cout << "here" << endl;*/
+		outputFile << "SQR"
+			<< " " << ID
+			<< " " << TopLeftCorner.x
+			<< " " << TopLeftCorner.y
+			<< " " << length
+			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+		if (!this->FigGfxInfo.isFilled)
+			outputFile << " " << "NO-FILL";
+		else
+			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+		outputFile << "\n";
+	}
+	
+
+}
 	
 
 void CSquare::DrawMe(GUI* pGUI) const
@@ -20,7 +41,7 @@ void CSquare::DrawMe(GUI* pGUI) const
 
 void CSquare::Load(ifstream &inputFile) {
 	string borderColor , fillColor;
-	int borderWidth; //to read the width of each figure's border
+	//int borderWidth; //to read the width of each figure's border
 	inputFile>>ID >> TopLeftCorner.x >> TopLeftCorner.y>>length ;
 
 	

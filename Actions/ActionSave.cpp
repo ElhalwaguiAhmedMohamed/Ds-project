@@ -1,55 +1,58 @@
-#include "CFigure.h"
+#include<iostream>
+#include "ActionSave.h"
+#include "..\Figures\CSquare.h"
+#include "..\Figures\CEllipse.h"
+#include "..\Figures\CHex.h"
+#include "..\ApplicationManager.h"
 
-CFigure::CFigure(){}
-CFigure::CFigure(GfxInfo FigureGfxInfo)
-{ 
-	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
-	Selected = false;
+#include "..\GUI\GUI.h"
+ActionSave::ActionSave(ApplicationManager* pApp):Action(pApp)
+{
 }
 
-void CFigure::SetSelected(bool s)
-{	Selected = s; }
+void ActionSave::Execute()
+{
 
-bool CFigure::IsSelected() const
-{	return Selected; }
+	ReadParameters();
+	GUI* pGui = pManager->GetGUI();
+	ofstream outputfile((filename + ".txt"), ios::app);
+	if (outputfile.is_open())
+	{
+		outputfile << ColorToString(UI.DrawColor)
+			<< "\t" << ColorToString(UI.FillColor)
+			<< "\t" << ColorToString(UI.BkGrndColor)
+			<< "\n";
+		pManager->SaveAll(outputfile);
 
-void CFigure::ChngDrawClr(color Dclr)
-{	FigGfxInfo.DrawClr = Dclr; }
+		pGui->PrintMessage("Graph Saved successfully :)");
 
-void CFigure::ChngFillClr(color Fclr)
-{	
-	FigGfxInfo.isFilled = true;
-	FigGfxInfo.FillClr = Fclr; 
+		outputfile.close();
+	}
+	/*if (outputfile.fail()) {
+		pGui->PrintMessage("Wrong file name :(");
+		return;
+	}*/
+	
+	
 }
 
-color CFigure::StringToColor(string s) {
-	if (s == "BLACK")
-		return BLACK;
-	if (s == "BLUE")
-		return BLUE;
-	if (s == "WHITE")
-		return WHITE;
-	if (s == "RED")
-		return RED;
-	if (s == "YELLOW")
-		return YELLOW;
-	if (s == "GREEN")
-		return GREEN;
-	if (s == "LIGHTGOLDENRODYELLOW")
-		return LIGHTGOLDENRODYELLOW;
-	if (s == "MAGENTA")
-		return MAGENTA;
-	if (s == "TURQUOISE")
-		return TURQUOISE;
-	if (s == "SKYBLUE")
-		return SKYBLUE;
-	if (s == "LIGHTSTEELBLUE")
-		return LIGHTSTEELBLUE;
-	return BLACK;
+void ActionSave::ReadParameters()
+{
+	GUI* Pgui = pManager->GetGUI();
+	
+	while (true)
+	{
+		Pgui->PrintMessage("Enter the file name you want to save :)");
+		filename = Pgui->GetSrting();
+		if (filename != "")
+		{
+			break;
+		}
+	}
+		
 }
-
-string CFigure::ColorToString(color c) {
-	if ((c.ucBlue == BLACK.ucBlue) && (c.ucGreen == BLACK.ucGreen) && (c.ucRed == BLACK.ucRed))
+string ActionSave::ColorToString(color c) {
+	if ((c.ucBlue == BLACK.ucBlue) && (c.ucGreen == BLACK.ucGreen) && (c.ucRed == BLACK.ucRed ))
 		return "BLACK";
 	if ((c.ucBlue == BLUE.ucBlue) && (c.ucGreen == BLUE.ucGreen) && (c.ucRed == BLUE.ucRed))
 		return "BLUE";
@@ -72,12 +75,4 @@ string CFigure::ColorToString(color c) {
 	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
 		return "LIGHTSTEELBLUE";
 	return "NO-FILL";
-}
-
-void CFigure::setStored()
-{
-	//getting data from the stored file
-	storedFill = FigGfxInfo.FillClr;
-	storedDraw = FigGfxInfo.DrawClr;
-	IsFilled = FigGfxInfo.isFilled;
 }
