@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="ActionBack.cpp" />
     <ClCompile Include="ActionFront.cpp" />
+    <ClCompile Include="Actions\ActionResize.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -177,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="Actions\ActionBack.h" />
     <ClInclude Include="Actions\ActionFront.h" />
+    <ClInclude Include="Actions\ActionResize.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />

@@ -1,6 +1,8 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
 #include "Actions\LoadAction.h"
+#include "Actions\ActionBack.h"
+#include "Actions\ActionFront.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -67,10 +69,22 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			///create ExitAction here
 			
 			break;
+
+		case BRNG_FRNT:
+			newAct = new ActionBringFront(this);
+			break;
+
+		case SEND_BACK :
+			newAct = new SendBack(this);
+			break;
+		
+
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
 			break;
+
+
 	}	
 	return newAct;
 }
@@ -135,3 +149,40 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
+
+//==================================================================================//
+//							Send To Back											//
+//==================================================================================//
+
+void ApplicationManager::SendToBack(int selectedIndex)
+{
+	if (selectedIndex != 0)
+	{
+		CFigure* spare = FigList[0];
+		FigList[0] = FigList[selectedIndex];
+		FigList[selectedIndex] = spare;
+	}
+}
+//==================================================================================//
+//							Bring To Front											//
+//==================================================================================//
+
+void ApplicationManager::BringToFront(int selectedIndex)
+{
+	if (selectedIndex != FigCount - 1)
+	{
+		CFigure* temp = FigList[FigCount - 1];
+		FigList[FigCount - 1] = FigList[selectedIndex];
+		FigList[selectedIndex] = temp;
+	}
+}
+
+int ApplicationManager::getSelectedFigure()
+{
+
+	for (int i = 0; i < FigCount; i++)
+		if (FigList[i]->IsSelected())
+			return i;
+	return -1;
+}
+

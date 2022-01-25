@@ -40,34 +40,13 @@ public:
 	void DeleteList();
 
 
-	void ApplicationManager::SendToBack(int selectedIndex)
-	{
-		if (selectedIndex != 0)
-		{
-			CFigure* spare = FigList[0];
-			FigList[0] = FigList[selectedIndex];
-			FigList[selectedIndex] = spare;
-		}
-	}
-	void ApplicationManager::BringToFront(int selectedIndex)
-	{
-		if (selectedIndex == 0)
-		{
-			CFigure* spare = FigList[0];
-			FigList[0] = FigList[selectedIndex];
-			FigList[selectedIndex] = spare;
-		}
-	}
+	void ApplicationManager::SendToBack(int selectedIndex);
 
+	void ApplicationManager::BringToFront(int selectedIndex);
+	
 
-	int ApplicationManager::getSelectedFigure()
-	{
-
-		for (int i = 0; i < FigCount; i++)
-			if (FigList[i]->IsSelected())
-				return i;
-		return -1;
-	}
+	int ApplicationManager::getSelectedFigure();
+	
 };
 
 #endif
