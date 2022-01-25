@@ -13,7 +13,6 @@ void CSquare::Save(ofstream& outputFile)
 {
 	if (outputFile.is_open())
 	{
-		/*cout << "here" << endl;*/
 		outputFile << "SQR"
 			<< " " << ID
 			<< " " << TopLeftCorner.x
