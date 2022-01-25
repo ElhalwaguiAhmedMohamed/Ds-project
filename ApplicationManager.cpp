@@ -2,7 +2,7 @@
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionAddEllipse.h"
 #include "Actions\ActionAddHex.h"
-#include "Actions\LoadAction.h"
+#include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include <iostream>
 #include <fstream>
@@ -73,7 +73,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new ActionSave(this);
 			break;
 		case LOAD:
-			newAct = new LoadAction(this);
+			newAct = new ActionLoad(this);
 			break;
 		case EXIT:
 			///create ExitAction here

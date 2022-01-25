@@ -1,4 +1,4 @@
-#include "LoadAction.h"
+#include "ActionLoad.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,12 +9,12 @@
 #include "..\Figures\CHex.h"
 #include "../Figures/CEllipse.h"
 
-LoadAction :: LoadAction(ApplicationManager *pMan) :Action(pMan) //chain 
+ActionLoad :: ActionLoad(ApplicationManager *pMan) :Action(pMan) //chain 
 {
 
 }
 
-void LoadAction::ReadParameters() 
+void ActionLoad::ReadParameters() 
 {
 	GUI* pGui = pManager->GetGUI();
 	pGui->PrintMessage("Please write the file you want to load :)");
@@ -23,7 +23,7 @@ void LoadAction::ReadParameters()
 }
 
 
-void LoadAction::Execute()
+void ActionLoad::Execute()
 {
 	ifstream inputFile;
 	bool flag = false;
@@ -73,21 +73,7 @@ void LoadAction::Execute()
 
 }
 
-
-//string LoadAction::convertToString(color c) {
-//	if (c == BLACK) return "BLACK";
-//	else if (c == WHITE) return "WHITE";
-//	else if (c == BLUE) return "BLUE";
-//	else if (c == RED) return "RED";
-//	else if (c == YELLOW) return "YELLOW";
-//	else if (c == GREEN) return "GREEN";
-//	else if (c == LIGHTGOLDENRODYELLOW) return "LIGHTGOLDENRODYELLOW";
-//	else if (c == MAGENTA) return "MAGENTA";
-//	else if (c == TURQUOISE) return "TURQUOISE";
-//	return "COLOR";
-//}
-
-color LoadAction::convertToColor(string s) {
+color ActionLoad::convertToColor(string s) {
 	if (s == "BLACK")
 		return BLACK;
 	if (s == "BLUE")
