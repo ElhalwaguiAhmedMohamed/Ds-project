@@ -160,6 +160,13 @@
     <ClCompile Include="Actions\ActionAddHex.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ActionBack.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionFront.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionResize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -264,5 +271,12 @@
     <ClInclude Include="Actions\ActionAddHex.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\ActionBack.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionFront.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionResize.h" />
   </ItemGroup>
 </Project>

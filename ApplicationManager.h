@@ -39,6 +39,15 @@ public:
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void DeleteList();
+
+
+	void ApplicationManager::SendToBack(int selectedIndex);
+
+	void ApplicationManager::BringToFront(int selectedIndex);
+	
+
+	int ApplicationManager::getSelectedFigure();
+	
 };
 
 #endif

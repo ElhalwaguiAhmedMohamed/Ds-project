@@ -87,6 +87,8 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_HEX:  return DRAW_HEX;
+			case ITM_BACK: return SEND_BACK;
+			case ITM_FRONT: return BRNG_FRNT;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
@@ -152,9 +154,12 @@ void GUI::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
+	;
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Rect.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elli.jpg";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hex.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Menu_Front.jpg"
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
