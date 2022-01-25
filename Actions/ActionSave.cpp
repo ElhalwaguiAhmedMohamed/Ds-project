@@ -52,6 +52,7 @@ void ActionSave::ReadParameters()
 		
 }
 string ActionSave::ColorToString(color c) {
+	
 	if ((c.ucBlue == BLACK.ucBlue) && (c.ucGreen == BLACK.ucGreen) && (c.ucRed == BLACK.ucRed ))
 		return "BLACK";
 	if ((c.ucBlue == BLUE.ucBlue) && (c.ucGreen == BLUE.ucGreen) && (c.ucRed == BLUE.ucRed))
