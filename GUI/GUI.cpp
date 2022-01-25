@@ -239,7 +239,7 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 
 }
 
-void GUI::DrawEllipse(Point center, int radius, GfxInfo RectGfxInfo, bool selected) const 
+void GUI::DrawEllipse(Point p1, Point p2, GfxInfo RectGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
@@ -260,7 +260,7 @@ void GUI::DrawEllipse(Point center, int radius, GfxInfo RectGfxInfo, bool select
 
 
 	//pWind->DrawRectangle(P1.x, P1.y, P1.x + length, P1.y + length, style);
-	pWind->DrawEllipse(center.x, center.y, center.x + radius, center.y + radius, style);
+	pWind->DrawEllipse(p1.x, p1.y, p2.x, p2.y, style);
 }
 void GUI::DrawHex(Point TopLeft, int Llen, int Rlen, GfxInfo RectGfxInfo, bool selected) const 
 {

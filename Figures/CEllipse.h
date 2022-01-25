@@ -6,11 +6,11 @@
 class CEllipse : public CFigure
 {
 private:
-	Point center;
-	int radius;
+	Point TopLeft;
+	Point LowerRight;
 public:
 	CEllipse();
-	CEllipse(Point, int, GfxInfo FigureGfxInfo);
+	CEllipse(Point, Point, GfxInfo FigureGfxInfo);
 	virtual void Load(ifstream& inputfile);
 	virtual void DrawMe(GUI* pOut) const;
 };

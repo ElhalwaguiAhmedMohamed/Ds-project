@@ -25,7 +25,7 @@ void ActionAddEllipse::Execute()
 
 	//Step 1 - Read Ellipse data from the user
 
-	pGUI->PrintMessage("New Ellipse: Click at first point to determine center");
+	pGUI->PrintMessage("New Ellipse: Click at first point");
 	//Read 1st point and store in point P1
 	pGUI->GetPointClicked(P1.x, P1.y);
 
@@ -44,17 +44,16 @@ void ActionAddEllipse::Execute()
 		//Step 2 - prepare square data
 		//User has entered two points P1&P2
 		//2.1- Identify the Top left corner of the square
-		Point center;
-		center.x = P1.x < P2.x ? P1.x : P2.x;
-		center.y = P1.y < P2.y ? P1.y : P2.y;
+		Point po1;
+		po1.x = P1.x < P2.x ? P1.x : P2.x;
+		po1.y = P1.y < P2.y ? P1.y : P2.y;
 
-		//2.2- Calcuate square side legnth
-		//The square side length would be the longer distance between the two points coordinates
-		int radius = max(abs(P1.x - P2.x), abs(P1.y - P2.y));
-
+		Point po2;
+		po2.x = P2.x > P1.x ? P2.x : P1.x;
+		po2.y = P2.y > P1.y ? P2.y : P1.y;
 
 		//Step 3 - Create a Square with the parameters read from the user
-		CEllipse* R = new CEllipse(center, radius, SqrGfxInfo);
+		CEllipse* R = new CEllipse(po1, po2, SqrGfxInfo);
 
 		//Step 4 - Add the Square to the list of figures
 		pManager->AddFigure(R);

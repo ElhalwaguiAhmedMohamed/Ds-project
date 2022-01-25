@@ -34,7 +34,7 @@ public:
 	
 	// -- Figures Drawing functions
 	void DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a Square
-	void DrawEllipse(Point center, int radius, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw an ellipse
+	void DrawEllipse(Point p1, Point p2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw an ellipse
 	void DrawHex(Point TopLeft, int Llen, int Rlen, GfxInfo RectGfxInfo, bool selected) const;//Draw a hexagon
 	
 	///TODO: Make similar functions for drawing all other figures.

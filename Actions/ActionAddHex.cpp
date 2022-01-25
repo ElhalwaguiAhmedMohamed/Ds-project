@@ -51,7 +51,7 @@ void ActionAddHex::Execute()
 		TopLeft.y = P1.y < P2.y ? P1.y : P2.y;
 
 		//2.2- Calcuate Hex side legnth
-		int Llen = abs(TopLeft.x - TopLeft.y);
+		int Llen = abs(TopLeft.x - P2.x);
 
 		//2.3- Calculate Hex R lengh:
 		int R = sqrt(pow(Llen, 2) - pow((0.5 * Llen), 2));
