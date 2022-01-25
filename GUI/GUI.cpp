@@ -159,7 +159,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elli.jpg";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hex.jpg";
 	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
-	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Menu_Front.jpg"
+	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Menu_Front.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";

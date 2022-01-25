@@ -7,6 +7,7 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 {
 	TopLeftCorner = P1;
 	length = len;
+	Selected = true;
 }
 
 void CSquare::Save(ofstream& outputFile)
