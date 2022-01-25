@@ -154,7 +154,6 @@ void GUI::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
-	;
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Rect.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elli.jpg";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hex.jpg";
