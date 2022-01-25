@@ -25,6 +25,7 @@ public:
 	virtual void DrawMe(GUI*) const = 0;		//Draw the figure
 	virtual void Load(ifstream& inputFile) = 0 ;
 	virtual color StringToColor(string s) ;
+
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
