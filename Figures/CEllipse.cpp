@@ -11,7 +11,7 @@ void CEllipse::Load(ifstream& inputFile)
 {
 	string borderColor, fillColor;
 	//int borderWidth; //to read the width of each figure's border
-	inputFile >> ID >> center.x>> center.y >> radius;
+	inputFile >> ID >> TopLeft.x>> TopLeft.y >> LowerRight.x >> LowerRight.y;
 
 
 
@@ -55,9 +55,10 @@ void CEllipse::Save(ofstream& outputFile)
 		/*cout << "here" << endl;*/
 		outputFile << "ELLIPSE"
 			<< " " << ID
-			<< " " << center.x
-			<< " " << center.y
-			<< " " << radius
+			<< " " << TopLeft.x
+			<< " " << TopLeft.y
+			<< " " << LowerRight.x
+			<< " " << LowerRight.y
 			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
 			outputFile << " " << "NO-FILL";
