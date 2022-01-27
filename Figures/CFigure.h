@@ -23,8 +23,12 @@ public:
 	bool IsSelected() const;	//check whether fig is selected
 	void setStored();
 	virtual void DrawMe(GUI*) const = 0;		//Draw the figure
+	virtual bool Get(int x, int y) const = 0;            //Check if the point inside The Figure
 	virtual void Load(ifstream& inputFile) = 0 ;
 	virtual color StringToColor(string s) ;
+	color GetCurrentDrawClr();	//Get the current figure's fill color
+	void ChngSelectClr(color Dclr);	//changes the figure's selection color
+	color ChngSelectClr();	//changes the figure's selection color
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 

@@ -51,3 +51,15 @@ void CFigure::setStored()
 	storedDraw = FigGfxInfo.DrawClr;
 	IsFilled = FigGfxInfo.isFilled;
 }
+
+color CFigure::GetCurrentDrawClr() {
+	return FigGfxInfo.DrawClr;
+}
+
+void CFigure::ChngSelectClr(color Dclr) {
+
+	FigGfxInfo.PreviousClr = Dclr;
+}
+color CFigure::ChngSelectClr() {
+	return FigGfxInfo.PreviousClr;
+}

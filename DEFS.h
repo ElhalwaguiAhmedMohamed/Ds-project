@@ -37,6 +37,7 @@ struct Point	//To be used for figures points
 
 struct GfxInfo	//Graphical info of each figure (you may add more members)
 {
+	color PreviousClr; //save color of figure before selection 
 	color DrawClr;	//Draw color of the figure
 	color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
