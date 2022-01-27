@@ -13,6 +13,7 @@ public:
 	CSquare(Point , int, GfxInfo FigureGfxInfo );
 	virtual void Load(ifstream& inputfile);
 	virtual void DrawMe(GUI* pOut) const;
+	virtual void Resize(float);
 };
 
 #endif

@@ -5,7 +5,7 @@
 #include "Actions\ActionFront.h"
 
 //Constructor
-ApplicationManager::ApplicationManager()
+ApplicationManager::ApplicationManager() : mode(0)
 {
 	//Create Input and output
 	pGUI = new GUI;	
@@ -77,7 +77,13 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case SEND_BACK :
 			newAct = new SendBack(this);
 			break;
-		
+		case RESIZE:
+			newAct = new ActionResize(this, SelectedFig);
+			break;
+
+		case BACK: 
+			mode = 0;
+			break;
 
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -121,6 +127,20 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+void ApplicationManager::set_selected(CFigure* fig)   //set the selcted figure. We need it on copy, cut, paste and delete actions
+{
+	SelectedFig = fig;
+}
+
+void ApplicationManager::Unselect(CFigure* fig)  // Select the last figures ONLY
+{
+	for (int i = 0; i < FigCount; ++i)
+		if (FigList[i] != fig)
+		{
+			FigList[i]->SetSelected(false);
+			FigList[i]->assignStored();
+		}
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -130,6 +150,12 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+
+	pGUI->ClearDrawArea();
+	if (mode == 0)
+		pGUI->CreateDrawToolBar();
+
+	
 }
 void ApplicationManager::DeleteList() {
 	for (int i = 0; i < FigCount; i++)
@@ -149,7 +175,10 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
-
+void ApplicationManager::set_LastMessage(string s)
+{
+	LastMessage = s;
+}
 //==================================================================================//
 //							Send To Back											//
 //==================================================================================//

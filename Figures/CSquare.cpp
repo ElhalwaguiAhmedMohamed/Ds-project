@@ -17,7 +17,9 @@ void CSquare::DrawMe(GUI* pGUI) const
 	
 
 }
+ void CSquare:: Resize(float resize){
 
+}
 void CSquare::Load(ifstream &inputFile) {
 	string borderColor , fillColor;
 	int borderWidth; //to read the width of each figure's border
