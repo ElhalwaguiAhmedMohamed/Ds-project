@@ -23,10 +23,8 @@ public:
 	bool IsSelected() const;	//check whether fig is selected
 	void setStored();
 	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
-	virtual void Save(ofstream&) = 0; //Save Figure
-	virtual void Load(ifstream&) = 0;	 // Load Figure
+	virtual void Load(ifstream& inputFile) = 0;
 	virtual color StringToColor(string s) ;
-	string ColorToString(color c);
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
