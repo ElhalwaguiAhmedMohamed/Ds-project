@@ -22,10 +22,14 @@ public:
 	void SetSelected(bool );	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void setStored();
+	virtual bool Get(int x, int y) const = 0;            //Check if the point inside The Figure
 	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
 	virtual void Save(ofstream&) = 0; //Save Figure
 	virtual void Load(ifstream&) = 0;	 // Load Figure
 	virtual color StringToColor(string s) ;
+	color GetCurrentDrawClr();	//Get the current figure's fill color
+	void ChngSelectClr(color Dclr);	//changes the figure's selection color
+	color ChngSelectClr();	//changes the figure's selection color
 	string ColorToString(color c);
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color

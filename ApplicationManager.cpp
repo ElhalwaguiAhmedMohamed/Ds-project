@@ -7,6 +7,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Actions\ActionSelect.h"
+
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -64,9 +67,15 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			///create AddLineAction here
 			newAct = new ActionAddEllipse(this);
 			break;
+
 		case DRAW_HEX:
 			newAct = new ActionAddHex(this);
 			break;
+
+		case DRAWING_AREA:
+			newAct = new ActionSelect(this);
+			break;
+
 		
 
 		case SAVE:
@@ -75,9 +84,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case LOAD:
 			newAct = new ActionLoad(this);
 			break;
+
 		case EXIT:
 			///create ExitAction here
-			
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -127,9 +136,18 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
-
-	///Add your code here to search for a figure given a point x,y	
-
+	for (int i = FigCount - 1; i >= 0; i--)
+		if (FigList[i]->Get(x, y))
+			return FigList[i];
+	return NULL;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+CFigure* ApplicationManager::GetSelectedFigure() const
+{
+	//check if a figure selected
+ 	for (int i = (FigCount - 1); i >= 0; i--) {
+		if (FigList[i]->IsSelected()) return FigList[i];
+	}
 	return NULL;
 }
 //==================================================================================//

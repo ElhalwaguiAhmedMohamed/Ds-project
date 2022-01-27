@@ -11,6 +11,7 @@ private:
 public:
 	CSquare();
 	CSquare(Point , int, GfxInfo FigureGfxInfo );
+	virtual bool Get(int x, int y) const;
 	virtual void Save(ofstream& outputfile);
 	virtual void Load(ifstream& inputfile);
 	virtual void DrawMe(GUI* pOut) const;
