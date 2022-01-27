@@ -184,9 +184,12 @@ void ApplicationManager::SendToBack(int selectedIndex)
 {
 	if (selectedIndex != 0)
 	{
-		CFigure* spare = FigList[0];
-		FigList[0] = FigList[selectedIndex];
-		FigList[selectedIndex] = spare;
+		for (int i = selectedIndex; i > 0; i--)
+		{
+			CFigure* temp = FigList[i];
+			FigList[i] = FigList[i - 1];
+			FigList[i - 1] = temp;
+		}
 	}
 }
 //==================================================================================//
@@ -197,9 +200,13 @@ void ApplicationManager::BringToFront(int selectedIndex)
 {
 	if (selectedIndex != FigCount - 1)
 	{
-		CFigure* temp = FigList[FigCount - 1];
-		FigList[FigCount - 1] = FigList[selectedIndex];
-		FigList[selectedIndex] = temp;
+		for (int i = selectedIndex; i < FigCount - 1; i++)
+		{
+			CFigure* temp = FigList[i];
+			FigList[i] = FigList[i+1];
+			FigList[i+1] = temp;
+		}
+		
 	}
 }
 

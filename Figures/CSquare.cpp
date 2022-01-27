@@ -2,6 +2,7 @@
 #include <fstream>
 #include<iostream>
 
+
 CSquare::CSquare() {}
 CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -15,15 +16,15 @@ void CSquare::Save(ofstream& outputFile)
 	if (outputFile.is_open())
 	{
 		outputFile << "SQR"
-			<< " " << ID
-			<< " " << TopLeftCorner.x
-			<< " " << TopLeftCorner.y
-			<< " " << length
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeftCorner.x
+			<< "\t" << TopLeftCorner.y
+			<< "\t" << length
+			<< "\t\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 	

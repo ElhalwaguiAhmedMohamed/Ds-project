@@ -54,16 +54,16 @@ void CEllipse::Save(ofstream& outputFile)
 	{
 		/*cout << "here" << endl;*/
 		outputFile << "ELLIPSE"
-			<< " " << ID
-			<< " " << TopLeft.x
-			<< " " << TopLeft.y
-			<< " " << LowerRight.x
-			<< " " << LowerRight.y
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeft.x
+			<< "\t" << TopLeft.y
+			<< "\t" << LowerRight.x
+			<< "\t" << LowerRight.y
+			<< "\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 
