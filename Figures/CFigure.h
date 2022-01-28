@@ -22,8 +22,9 @@ public:
 	void SetSelected(bool );	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void setStored();
-	virtual bool Get(int x, int y) const = 0;            //Check if the point inside The Figure
-	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
+	virtual bool Get(int x, int y) const = 0;	//Check if the point inside The Figure
+	virtual string ShowFigureDetails() const = 0;	//show figure details
+	virtual void DrawMe(GUI*) const  = 0;	//Draw the figure
 	virtual void Save(ofstream&) = 0; //Save Figure
 	virtual void Load(ifstream&) = 0;	 // Load Figure
 	virtual color StringToColor(string s) ;
