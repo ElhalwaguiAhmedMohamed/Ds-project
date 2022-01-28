@@ -4,6 +4,7 @@
 #include "Actions\ActionAddHex.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
+#include "Actions/ActionExit.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -87,6 +88,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 		case EXIT:
 			///create ExitAction here
+			newAct = new ActionExit(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
