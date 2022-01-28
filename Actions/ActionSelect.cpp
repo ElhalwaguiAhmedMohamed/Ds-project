@@ -22,13 +22,14 @@ void ActionSelect::Execute()
 		if (fig->IsSelected()) {
 			fig->ChngDrawClr(fig->ChngSelectClr());
 			fig->SetSelected(false);
-			pGUI->PrintMessage("unselected");
+			pGUI->ClearStatusBar();
 		}
 		else{
 			fig->ChngSelectClr(fig->GetCurrentDrawClr());
 			fig->ChngDrawClr(MAGENTA);
 			fig->SetSelected(true);
-			pGUI->PrintMessage("selected");
+			pGUI->PrintMessage(fig->ShowFigureDetails());
+			
 		}
 	}
 	else {
@@ -37,7 +38,7 @@ void ActionSelect::Execute()
 		if (selectedFiguer != NULL) {
 			selectedFiguer->ChngDrawClr(selectedFiguer->ChngSelectClr());
 			selectedFiguer->SetSelected(false);
-			pGUI->PrintMessage("unselected");
+			pGUI->ClearStatusBar();
 		}
 	}
 }
