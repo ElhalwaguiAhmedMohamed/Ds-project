@@ -53,7 +53,7 @@ void ActionResize::Execute()
 			pManager->CreateAction(BACK);
 			pManager->set_selected(NULL);
 			pManager->Unselect(NULL);
-			pManager->set_LastMessage("");
+			//pManager->set_LastMessage("");
 			return;
 		}
 	}

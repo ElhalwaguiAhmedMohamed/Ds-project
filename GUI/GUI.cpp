@@ -84,6 +84,8 @@ ActionType GUI::MapInputToActionType() const
 
 			switch (ClickedItemOrder)
 			{
+			
+			
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_BACK: return SEND_BACK;
@@ -105,6 +107,7 @@ ActionType GUI::MapInputToActionType() const
 		//[3] User clicks on the status bar
 		return STATUS;
 	}
+	
 	else if (UI.InterfaceMode == MODE_SIZE)
 	{
 		//[1] If user clicks on the Toolbar

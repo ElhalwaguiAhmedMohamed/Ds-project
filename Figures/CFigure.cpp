@@ -52,13 +52,15 @@ void CFigure::setStored()
 	storedDraw = FigGfxInfo.DrawClr;
 	IsFilled = FigGfxInfo.isFilled;
 }
-void CFigure::setSize(float size)
-{
-	FigGfxInfo.Resize_Factor = size;
-}
+
 void CFigure::assignStored()
 {
 	FigGfxInfo.isFilled = IsFilled;
 	FigGfxInfo.FillClr = storedFill;
 	FigGfxInfo.DrawClr = storedDraw;
+}
+
+void CFigure::setSize(float size)
+{
+	FigGfxInfo.Resize_Factor = size;
 }

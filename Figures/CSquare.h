@@ -7,6 +7,8 @@ class CSquare : public CFigure
 {
 private:
 	Point TopLeftCorner;	
+	Point Corner1;
+	Point Corner2;
 	int length;
 public:
 	CSquare();
