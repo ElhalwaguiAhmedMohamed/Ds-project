@@ -22,6 +22,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_HEX,        //Hex item in menu
 	
 	//TODO: Add more items names here
+	ITM_DELETE,
 	ITM_SAVE,
 	ITM_LOAD,
 	ITM_EXIT,		//Exit item

@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionAddEllipse.h"
+#include "Actions\ActionDelete.h"
 #include "Actions\ActionAddHex.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
@@ -73,11 +74,13 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new ActionAddHex(this);
 			break;
 
+		case DEL:
+			newAct = new ActionDelete(this);
+			break;
+
 		case DRAWING_AREA:
 			newAct = new ActionSelect(this);
 			break;
-
-		
 
 		case SAVE:
 			newAct = new ActionSave(this);
@@ -127,6 +130,12 @@ void ApplicationManager::SaveAll(ofstream &outputfile)
 //==================================================================================//
 
 //Add a figure to the list of figures
+CFigure** ApplicationManager::getFigList(){
+	return FigList;
+};
+int* ApplicationManager::getFigCount() {
+	return &FigCount;
+};
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
@@ -180,3 +189,4 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
+
