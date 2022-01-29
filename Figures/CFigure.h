@@ -34,7 +34,11 @@ public:
 	string ColorToString(color c);
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
+	virtual void Resize(float) = 0;
+	//virtual string PrintInfo(GUI* pOut) = 0;	//print all figure info on the status bar
+	void assignStored();
 
+	void setSize(float);
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

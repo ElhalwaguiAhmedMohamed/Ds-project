@@ -135,6 +135,10 @@
     <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="ActionBack.cpp" />
+    <ClCompile Include="ActionFront.cpp" />
+    <ClCompile Include="Actions\ActionResize.cpp" />
+    
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -186,6 +190,10 @@
     <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionBack.h" />
+    <ClInclude Include="Actions\ActionFront.h" />
+    <ClInclude Include="Actions\ActionResize.h" />
+   
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
