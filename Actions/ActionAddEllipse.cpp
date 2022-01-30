@@ -16,7 +16,7 @@ void ActionAddEllipse::Execute()
 
 
 	GfxInfo SqrGfxInfo;
-	SqrGfxInfo.isFilled = false;	//default is not filled
+	SqrGfxInfo.isFilled = pGUI->getColorIsFilled();	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
 	SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
