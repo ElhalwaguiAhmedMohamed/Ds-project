@@ -15,7 +15,6 @@ GUI::GUI()
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 40;
 	UI.MenuItemWidth = 50;
-	
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.FillColor = SKYBLUE;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
