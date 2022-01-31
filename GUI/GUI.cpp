@@ -342,7 +342,7 @@ void GUI::CreateDrawToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(LIGHTSLATEBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -352,7 +352,6 @@ void GUI::CreateDrawToolBar() const
 
 void GUI::CreateResizeToolBar() const
 {
-	ClearToolBar();
 	
 	UI.InterfaceMode = MODE_SIZE;
 
