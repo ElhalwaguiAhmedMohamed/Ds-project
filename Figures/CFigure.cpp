@@ -48,6 +48,8 @@ color CFigure::StringToColor(string s) {
 		return SKYBLUE;
 	if (s == "LIGHTSTEELBLUE")
 		return LIGHTSTEELBLUE;
+	if (s == "IVORY")
+		return IVORY;
 	return BLACK;
 }
 
@@ -74,6 +76,8 @@ string CFigure::ColorToString(color c) {
 		return "SKYBLUE";
 	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
 		return "LIGHTSTEELBLUE";
+	if ((c.ucBlue == IVORY.ucBlue) && (c.ucGreen == IVORY.ucGreen) && (c.ucRed == IVORY.ucRed))
+		return"IVORY";
 	return "NO-FILL";
 }
 

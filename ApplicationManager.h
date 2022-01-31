@@ -50,14 +50,14 @@ public:
 	void DeleteList();
 	
 
-	void ApplicationManager::SendToBack(int selectedIndex);
+	void SendToBack(int selectedIndex);
 
-	void ApplicationManager::BringToFront(int selectedIndex);
+	void BringToFront(int selectedIndex);
 
 	void set_LastMessage(string); // saving the last message
 	
 
-	int ApplicationManager::getSelectedFigure();
+	int getSelectedFigure();
 	void Resize();
 
 	

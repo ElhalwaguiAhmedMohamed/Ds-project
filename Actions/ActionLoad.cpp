@@ -112,5 +112,7 @@ color ActionLoad::convertToColor(string s) {
 		return SKYBLUE;
 	if (s == "LIGHTSTEELBLUE")
 		return LIGHTSTEELBLUE;
+	if (s == "IVORY")
+		return IVORY;
 	return BLACK;
 }

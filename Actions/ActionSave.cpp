@@ -7,16 +7,18 @@
 #include "..\ApplicationManager.h"
 
 #include "..\GUI\GUI.h"
-ActionSave::ActionSave(ApplicationManager* pApp):Action(pApp)
+ActionSave::ActionSave(ApplicationManager* pApp, int _force) :Action(pApp)
 {
+	force = _force;
 }
 
 void ActionSave::Execute()
 {
-	if(filename!="saver")
-	{
+	if (force == 0)
 		ReadParameters();
-	}
+	else
+		filename = "saver";
+	
 	GUI* pGui = pManager->GetGUI();
 	ofstream outputfile((filename + ".txt"));
 	if (outputfile.is_open())
@@ -81,5 +83,7 @@ string ActionSave::ColorToString(color c) {
 		return "SKYBLUE";
 	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
 		return "LIGHTSTEELBLUE";
+	if ((c.ucBlue == IVORY.ucBlue) && (c.ucGreen == IVORY.ucGreen) && (c.ucRed == IVORY.ucRed))
+		return"IVORY";
 	return "NO-FILL";
 }

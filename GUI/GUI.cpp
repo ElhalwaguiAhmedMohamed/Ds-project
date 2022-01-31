@@ -17,7 +17,7 @@ GUI::GUI()
 	UI.MenuItemWidth = 50;
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.IsFilled = false;
-	UI.FillColor = SKYBLUE;	//Filling color
+	UI.FillColor = IVORY;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
 	UI.BkGrndColor = IVORY;	//Background color
 	UI.ToolBarBkGrndColor = WHITE; //toolbar background color
