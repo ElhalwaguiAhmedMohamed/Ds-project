@@ -342,7 +342,7 @@ void GUI::CreateDrawToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(LIGHTBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -366,12 +366,12 @@ void GUI::CreateResizeToolBar() const
 
 	///TODO: write code to create Color mode menu
 	for (int i = 0; i < SIZE_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth + 10, 10, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth , 0 , UI.MenuItemWidth, UI.ToolBarHeight);
 
 
 	
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTBLUE, 2);
+	pWind->SetPen(LIGHTBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
