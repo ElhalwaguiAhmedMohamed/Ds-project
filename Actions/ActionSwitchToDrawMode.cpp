@@ -12,6 +12,7 @@ void ActionSwitchToDrawMode::Execute()
 	GUI* pGUI = pManager->GetGUI();
 	pGUI->ClearToolBar();
 	pGUI->CreateDrawToolBar();
+	pGUI->PrintMessage("Back to Draw mode");
 	UI.InterfaceMode = MODE_DRAW;
 
 }

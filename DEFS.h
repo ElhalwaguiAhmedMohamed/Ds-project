@@ -28,6 +28,9 @@ enum ActionType //The actions supported (you can add more if needed)
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color
+	PLAY_SHAPES,    //play with only shapes
+	PLAY_COLORS,	//play with only colors
+	PLAY_SHAPES_COLORS, //PLay with shapes and colors
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
 	RESIZE,			//Resize a figure(s)

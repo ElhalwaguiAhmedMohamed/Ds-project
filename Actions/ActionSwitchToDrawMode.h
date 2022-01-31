@@ -9,7 +9,6 @@ class ActionSwitchToDrawMode : public Action
 public:
 	ActionSwitchToDrawMode(ApplicationManager* pApp);
 
-	//Add Square to the ApplicationManager
 	virtual void Execute();
 
 };
