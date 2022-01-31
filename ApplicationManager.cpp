@@ -1,7 +1,13 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionAddEllipse.h"
+#include "Actions\ActionDelete.h"
 #include "Actions\ActionAddHex.h"
+#include "Actions\ActionOpenPalette.h"
+#include "Actions\ActionChngColor.h"
+#include "Actions\ActionChngFillColor.h"
+#include "Actions\ActionChngBkColor.h"
+#include "Actions\ActionSwitchToDrawMode.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
@@ -74,12 +80,62 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new ActionAddHex(this);
 			break;
+		case OPEN_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this,1);
+			break;
+		case SET_RED:
+			newAct = new ActionChngColor(this, 1);
+			break;
+		case SET_GREEN:
+			newAct = new ActionChngColor(this, 2);
+			break;
+		case SET_BLUE:
+			newAct = new ActionChngColor(this, 3);
+			break;
+		case SET_YELLOW:
+			newAct = new ActionChngColor(this, 4);
+			break;
+		case GO_BACK:
+			newAct = new ActionSwitchToDrawMode(this);
+			break;
+		case OPEN_FILL_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this, 2);
+			break;
+		case SET_FILL_RED:
+			newAct = new ActionChngFillColor(this, 1);
+			break;
+		case SET_FILL_GREEN:
+			newAct = new ActionChngFillColor(this, 2);
+			break;
+		case SET_FILL_BLUE:
+			newAct = new ActionChngFillColor(this, 3);
+			break;
+		case SET_FILL_YELLOW:
+			newAct = new ActionChngFillColor(this, 4);
+			break;
+		case OPEN_BKGRND_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this, 3);
+			break;
+		case SET_BK_RED:
+			newAct = new ActionChngBkColor(this, 1);
+			break;
+		case SET_BK_GREEN:
+			newAct = new ActionChngBkColor(this, 2);
+			break;
+		case SET_BK_BLUE:
+			newAct = new ActionChngBkColor(this, 3);
+			break;
+		case SET_BK_YELLOW:
+			newAct = new ActionChngBkColor(this, 4);
+			break;
+
+		case DEL:
+			newAct = new ActionDelete(this);
+			break;
 
 		case DRAWING_AREA:
 			newAct = new ActionSelect(this);
 			break;
-
-		
 
 		case SAVE:
 			newAct = new ActionSave(this);
@@ -148,6 +204,12 @@ void ApplicationManager::SaveAll(ofstream &outputfile)
 //==================================================================================//
 
 //Add a figure to the list of figures
+CFigure** ApplicationManager::getFigList(){
+	return FigList;
+};
+int* ApplicationManager::getFigCount() {
+	return &FigCount;
+};
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )

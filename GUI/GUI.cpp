@@ -6,8 +6,8 @@ GUI::GUI()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1300;
-	UI.height = 700;
+	UI.width = 1000;
+	UI.height = 500;
 	UI.wx = 5;
 	UI.wy =5;
 
@@ -15,11 +15,12 @@ GUI::GUI()
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 40;
 	UI.MenuItemWidth = 50;
-	
 	UI.DrawColor = BLACK;	//Drawing color
+	UI.IsFilled = false;
 	UI.FillColor = SKYBLUE;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
 	UI.BkGrndColor = LIGHTSTEELBLUE;	//Background color
+	UI.ToolBarBkGrndColor = WHITE; //toolbar background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = CORNFLOWERBLUE;
 	UI.PenWidth = 3;	//width of the figures frames
@@ -92,6 +93,10 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_BACK: return SEND_BACK;
 			case ITM_FRONT: return BRNG_FRNT;
 			case ITM_RESIZE: return RESIZE;
+			case ITM_PALETTE: return OPEN_PALETTE_BAR;
+			case ITM_CHNG_FILL: return OPEN_FILL_PALETTE_BAR;
+			case ITM_CHNG_BK: return OPEN_BKGRND_PALETTE_BAR;
+			case ITM_DELETE:  return DEL;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
@@ -106,6 +111,103 @@ ActionType GUI::MapInputToActionType() const
 			return DRAWING_AREA;	
 		}
 		
+		//[3] User clicks on the status bar
+		return STATUS;
+	}
+	else if (UI.InterfaceMode == MODE_COLOR) {
+		//[1] If user clicks on the Toolbar in color mode
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+			case ITM_RED: return SET_RED;
+			case ITM_GREEN: return SET_GREEN;
+			case ITM_BLUE: return SET_BLUE;
+			case ITM_YELLOW: return SET_YELLOW;
+			case ITM_BACK: return GO_BACK;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+
+		//[3] User clicks on the status bar
+		return STATUS;
+	}
+	else if (UI.InterfaceMode == MODE_FILL_COLOR) {
+		//[1] If user clicks on the Toolbar in color mode
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+			switch (ClickedItemOrder)
+			{
+			case ITM_RED: return SET_FILL_RED;
+			case ITM_GREEN: return SET_FILL_GREEN;
+			case ITM_BLUE: return SET_FILL_BLUE;
+			case ITM_YELLOW: return SET_FILL_YELLOW;
+			case ITM_BACK: return GO_BACK;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+
+
+
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+
+		//[3] User clicks on the status bar
+		return STATUS;
+	}
+	else if (UI.InterfaceMode == MODE_BKGRND_COLOR) {
+		//[1] If user clicks on the Toolbar in color mode
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+			switch (ClickedItemOrder)
+			{
+			case ITM_RED: return SET_BK_RED;
+			case ITM_GREEN: return SET_BK_GREEN;
+			case ITM_BLUE: return SET_BK_BLUE;
+			case ITM_YELLOW: return SET_BK_YELLOW;
+			case ITM_BACK: return GO_BACK;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+
+
+
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+
 		//[3] User clicks on the status bar
 		return STATUS;
 	}
@@ -187,9 +289,13 @@ void GUI::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
-	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Rect.jpg";
+	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Rect.JPG";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elli.jpg";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hex.jpg";
+	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
+	MenuItemImages[ITM_CHNG_FILL] = "images\\MenuItems\\Menu_FillColor.jpg";
+	MenuItemImages[ITM_CHNG_BK] = "images\\MenuItems\\Menu_BKColor.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
@@ -231,7 +337,7 @@ void GUI::CreateNewToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth + 10, 10, UI.MenuItemWidth, UI.ToolBarHeight);
 
 
-
+	
 	//Draw a line under the toolbar
 	pWind->SetPen(LIGHTBLUE, 2);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
@@ -354,7 +460,49 @@ void GUI::DrawHex(Point TopLeft, int Llen, int Rlen, GfxInfo RectGfxInfo, bool s
 	//pWind->DrawRectangle(P1.x, P1.y, P1.x + length, P1.y + length, style);
 	pWind->DrawPolygon(hX, hY, 6, style);
 }
+//======================================================================================//
+//							    Change Color Functions										//
+// =====================================================================================//
+void GUI::ClearToolBar() const
+{
+	//clear tool bar by drawing filled white square
+	pWind->SetPen(UI.BkGrndColor, 1);
+	pWind->SetBrush(UI.ToolBarBkGrndColor);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
+}
+void GUI::CreateColorToolBar() const {
+	//UI.InterfaceMode = MODE_COLOR;
+	//You can draw the tool bar icons in any way you want.
+	//Below is one possible way
 
+	//First prepare List of images for each menu item
+	//To control the order of these images in the menu, 
+	//reoder them in UI_Info.h ==> enum ColorMenuItem
+	string MenuItemImages[COLOR_ITM_COUNT];
+	MenuItemImages[ITM_RED] = "images\\MenuItems\\Menu_Red.jpg";
+	MenuItemImages[ITM_GREEN] = "images\\MenuItems\\Menu_Green.jpg";
+	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_Blue.jpg";
+	MenuItemImages[ITM_YELLOW] = "images\\MenuItems\\Menu_Yellow.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+
+	//TODO: Prepare images for each menu item and add it to the list
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < COLOR_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(LIGHTBLUE, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+bool GUI::getColorIsFilled() const {
+	if (UI.IsFilled == true) {
+		return UI.IsFilled;
+	}
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()
 {

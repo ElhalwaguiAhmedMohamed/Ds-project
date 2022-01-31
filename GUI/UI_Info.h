@@ -11,6 +11,9 @@ enum GUI_MODE	//Graphical user interface mode
 {
 	
 	MODE_DRAW,	//Drawing mode (startup mode)
+	MODE_COLOR, //coloring mode
+	MODE_FILL_COLOR, //fill color mode
+	MODE_BKGRND_COLOR, //background color mode
 	MODE_SIZE,
 	MODE_PLAY	//Playing mode
 	
@@ -27,7 +30,11 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_FRONT,
 	ITM_RESIZE,
 	
+	ITM_PALETTE,	//Palette Item in menu-change draw color 
+	ITM_CHNG_FILL,	//change fill color
+	ITM_CHNG_BK,	//change background color
 	//TODO: Add more items names here
+	ITM_DELETE,
 	ITM_SAVE,
 	ITM_LOAD,
 	ITM_EXIT,		//Exit item
@@ -59,7 +66,15 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 	
 };
 
-
+enum ColorMenuItem
+{
+	ITM_RED,
+	ITM_GREEN,
+	ITM_BLUE,
+	ITM_YELLOW,
+	ITM_BACK,
+	COLOR_ITM_COUNT
+};
 
 
 
@@ -77,10 +92,12 @@ struct UI_Info	//User Interface Info.
 	
 
 	color DrawColor;		//Drawing color
+	bool IsFilled;			//check if is filled property is true or false
 	color FillColor;		//Filling color
 	color HighlightColor;	//Highlighting color
 	color MsgColor;			//Messages color
 	color BkGrndColor;		//Background color
+	color ToolBarBkGrndColor; //Toolbar background Height
 	color StatusBarColor;	//Status bar color
 	int PenWidth;			//width of the pen that draws shapes
 
