@@ -89,11 +89,10 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_HEX:  return DRAW_HEX;
-			case ITM_SAVE: return SAVE;
 			case ITM_BACK: return SEND_BACK;
 			case ITM_FRONT: return BRNG_FRNT;
 			case ITM_RESIZE: return RESIZE;
-			case ITM_EXIT: return EXIT;
+			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
 			

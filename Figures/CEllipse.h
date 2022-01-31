@@ -20,6 +20,8 @@ public:
 	virtual void Load(ifstream& inputfile);
 	virtual void Save(ofstream& outputfile);
 	virtual void DrawMe(GUI* pOut) const;
+	virtual void Resize(float);
+
 };
 
 #endif

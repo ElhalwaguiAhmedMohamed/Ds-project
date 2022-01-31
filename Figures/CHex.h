@@ -10,6 +10,7 @@ private:
 	Point TopLeft;
 	int Llen;
 	int Rlen;
+	int length;
 	Point Center;
 
 public:
@@ -20,6 +21,8 @@ public:
 	virtual void Load(ifstream& inputfile);
 	virtual void Save(ofstream& outputfile);
 	virtual void DrawMe(GUI* pOut) const;
+	virtual void Resize(float);
+
 
 };
 

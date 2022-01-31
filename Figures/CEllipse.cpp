@@ -98,3 +98,9 @@ void CEllipse::Save(ofstream& outputFile)
 
 
 }
+
+void CEllipse::Resize(float size) {
+	this->LowerRight.x = this->LowerRight.x * size;
+	this->LowerRight.y = this->LowerRight.y * size;
+
+}

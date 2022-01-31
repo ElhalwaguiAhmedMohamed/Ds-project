@@ -102,10 +102,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case RESIZE:
 			newAct = new ActionResize(this, SelectedFig);
+			mode = 1;
 			break;
 
 		case BACK: 
-			mode = 0;
+			UI.InterfaceMode = MODE_DRAW;
 			break;
 
 		
@@ -196,10 +197,15 @@ void ApplicationManager::UpdateInterface() const
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
 
-	pGUI->ClearDrawArea();
-	if (mode == 0)
-		pGUI->CreateDrawToolBar();
+	
+	if (UI.InterfaceMode == MODE_DRAW)
+	{
 
+		pGUI->CreateDrawToolBar();
+	}
+	else if (UI.InterfaceMode == MODE_SIZE) {
+		pGUI->CreateNewToolBar();
+	}
 	
 }
 void ApplicationManager::DeleteList() {

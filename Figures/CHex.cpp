@@ -93,3 +93,10 @@ void CHex::Save(ofstream& outputFile)
 
 
 }
+
+void CHex::Resize(float size) {
+	this->Llen = this->Llen * size;
+	this->Rlen = this->Rlen * size;
+
+}
+

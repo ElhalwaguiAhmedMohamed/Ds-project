@@ -94,7 +94,7 @@ void CFigure::ChngSelectClr(color Dclr) {
 color CFigure::ChngSelectClr() {
 	return FigGfxInfo.PreviousClr;
 }
-}
+
 
 void CFigure::assignStored()
 {
@@ -105,5 +105,5 @@ void CFigure::assignStored()
 
 void CFigure::setSize(float size)
 {
-	FigGfxInfo.Resize_Factor = size;
+	FigGfxInfo.Resize_Factor = 0;
 }
