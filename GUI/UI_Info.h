@@ -26,8 +26,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
 	ITM_HEX,        //Hex item in menu
-	ITM_BACK,
-	ITM_FRONT,
+	ITM_TO_BACK,
+	ITM_TO_FRONT,
 	ITM_RESIZE,
 	
 	ITM_PALETTE,	//Palette Item in menu-change draw color 

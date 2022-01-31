@@ -10,8 +10,7 @@ void ActionResize::ReadActionParameters() {
 void ActionResize::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
-
-	pGui->CreateNewToolBar();
+	pGui->CreateResizeToolBar();
 
 	if (Selected != NULL)
 	{
@@ -49,6 +48,7 @@ void ActionResize::Execute()
 		else if (pAct == BACK2)
 		{
 			pManager->CreateAction(BACK);
+			pGui->ClearToolBar();
 			//pManager->set_selected(NULL);
 			//pManager->Unselect(NULL);
 			//pManager->set_LastMessage("");

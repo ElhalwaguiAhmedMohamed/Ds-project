@@ -29,7 +29,7 @@ public:
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
 	void CreateToolBar() const;		// creates ToolBar
-	void CreateNewToolBar() const;
+	void CreateResizeToolBar() const;
 	void CreateColorToolBar() const;      //creates color palette toolbar & menu
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area

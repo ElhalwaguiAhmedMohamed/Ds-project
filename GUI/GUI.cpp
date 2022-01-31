@@ -90,8 +90,8 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_HEX:  return DRAW_HEX;
-			case ITM_BACK: return SEND_BACK;
-			case ITM_FRONT: return BRNG_FRNT;
+			case ITM_TO_BACK: return SEND_BACK;
+			case ITM_TO_FRONT: return BRNG_FRNT;
 			case ITM_RESIZE: return RESIZE;
 			case ITM_PALETTE: return OPEN_PALETTE_BAR;
 			case ITM_CHNG_FILL: return OPEN_FILL_PALETTE_BAR;
@@ -298,8 +298,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
-	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
-	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Menu_Front.jpg";
+	MenuItemImages[ITM_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
+	MenuItemImages[ITM_TO_FRONT] = "images\\MenuItems\\Menu_Front.jpg";
 	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Resize.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	
@@ -319,9 +319,10 @@ void GUI::CreateDrawToolBar() const
 
 
 
-void GUI::CreateNewToolBar() const
+void GUI::CreateResizeToolBar() const
 {
-	CreateToolBar();
+	ClearToolBar();
+	
 	UI.InterfaceMode = MODE_SIZE;
 
 	string MenuItemImages[SIZE_ITM_COUNT];

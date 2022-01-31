@@ -266,7 +266,8 @@ void ApplicationManager::UpdateInterface() const
 		pGUI->CreateDrawToolBar();
 	}
 	else if (UI.InterfaceMode == MODE_SIZE) {
-		pGUI->CreateNewToolBar();
+		pGUI->CreateResizeToolBar();
+		
 	}
 	
 }
