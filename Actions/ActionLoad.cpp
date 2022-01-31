@@ -14,9 +14,9 @@
 #define NOMINMAX
 #endif
 #include <windows.h>
-ActionLoad :: ActionLoad(ApplicationManager *pMan) :Action(pMan) //chain 
+ActionLoad :: ActionLoad(ApplicationManager *pMan , int _force) :Action(pMan) //chain 
 {
-
+	force = _force;
 }
 
 //void ActionLoad::ReadParameters() 
@@ -30,18 +30,23 @@ ActionLoad :: ActionLoad(ApplicationManager *pMan) :Action(pMan) //chain
 
 void ActionLoad::Execute()
 {
-	
-	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");
-	string s = pGui->GetSrting();
-	if (s == "Y" || s == "y") {
-		Action* newAct = new ActionSave(pManager);
-		pManager->ExecuteAction(newAct);
+	if (force == 1) {
 		load();
 	}
 	else {
-		load();
+		GUI* pGui = pManager->GetGUI();
+		pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");
+		string s = pGui->GetSrting();
+		if (s == "Y" || s == "y") {
+			Action* newAct = new ActionSave(pManager);
+			pManager->ExecuteAction(newAct);
+			load();
+		}
+		else {
+			load();
+		}
 	}
+
 
 }
 
@@ -49,32 +54,42 @@ void ActionLoad::Execute()
 void ActionLoad::load() {
 	ifstream inputFile;
 	bool flag = false;
-	char filename[MAX_PATH];
-
-	OPENFILENAME ofn;
-	ZeroMemory(&filename, sizeof(filename));
-	ZeroMemory(&ofn, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
-	ofn.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
-	ofn.lpstrFile = filename;
-	ofn.nMaxFile = MAX_PATH;
-	ofn.lpstrTitle = "Select a File, yo!";
-	ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
-	if (GetOpenFileNameA(&ofn))
-	{
-		std::cout << "You chose the file \"" << filename << "\"\n";
-	}
-
-	
-	
 	GUI* pGui = pManager->GetGUI();
 	string shape, drawColor, fillColor, bgColor;
 	int numberOfShapes;
 	CFigure* figure = NULL;
+
+	if (force == 0) {
+		char filename[MAX_PATH];
+
+		OPENFILENAME ofn;
+		ZeroMemory(&filename, sizeof(filename));
+		ZeroMemory(&ofn, sizeof(ofn));
+		ofn.lStructSize = sizeof(ofn);
+		ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+		ofn.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
+		ofn.lpstrFile = filename;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.lpstrTitle = "Select a File, yo!";
+		ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+		if (GetOpenFileNameA(&ofn))
+		{
+			std::cout << "You chose the file \"" << filename << "\"\n";
+		}
+		inputFile.open(ofn.lpstrFile);
+	}
+	else {
+		inputFile.open("saver.txt");
+
+	}
+	
+
+	
+	
+	
 	//ReadParameters(); // get the file to start reading lines from it
 
-	inputFile.open(ofn.lpstrFile); //open the saved file as text
+	 //open the saved file as text
 	pGui->ClearDrawArea(); //clear the current gui from any shapes
 	//check if the file opened successfully 
 	if (inputFile.fail()) {

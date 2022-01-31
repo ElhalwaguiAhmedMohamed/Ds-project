@@ -4,8 +4,9 @@ class ActionLoad :	public Action
 {
 private:
 	string FileName;
+	int force;
 public:
-	ActionLoad(ApplicationManager* pMan); // constructor
+	ActionLoad(ApplicationManager* pMan , int _force=0); // constructor
 	//virtual void ReadParameters();
 	virtual void Execute();
 	virtual void load();
