@@ -78,16 +78,16 @@ void CHex::Save(ofstream& outputFile)
 	{
 		/*cout << "here" << endl;*/
 		outputFile << "HEX"
-			<< " " << ID
-			<< " " << TopLeft.x
-			<< " " << TopLeft.y
-			<< " " << Llen
-			<< " " << Rlen
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeft.x
+			<< "\t" << TopLeft.y
+			<< "\t" << Llen
+			<< "\t" << Rlen
+			<< "\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 

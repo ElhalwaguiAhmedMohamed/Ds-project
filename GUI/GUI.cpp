@@ -17,13 +17,13 @@ GUI::GUI()
 	UI.MenuItemWidth = 50;
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.IsFilled = false;
-	UI.FillColor = SKYBLUE;	//Filling color
+	UI.FillColor = IVORY;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
 	UI.BkGrndColor = IVORY;	//Background color
 	UI.ToolBarBkGrndColor = WHITE; //toolbar background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = CORNFLOWERBLUE;
-	UI.PenWidth = 3;	//width of the figures frames
+	UI.PenWidth = 2;	//width of the figures frames
 
 	
 	//Create the output window
@@ -342,7 +342,7 @@ void GUI::CreateDrawToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTSLATEBLUE, 3);
+	pWind->SetPen(LIGHTBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -365,12 +365,12 @@ void GUI::CreateResizeToolBar() const
 
 	///TODO: write code to create Color mode menu
 	for (int i = 0; i < SIZE_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth + 10, 10, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth , 0 , UI.MenuItemWidth, UI.ToolBarHeight);
 
 
 	
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTBLUE, 2);
+	pWind->SetPen(LIGHTBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
