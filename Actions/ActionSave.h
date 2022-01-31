@@ -8,7 +8,7 @@ private:
 	string filename;
 public:
 	ActionSave(ApplicationManager* pApp);
-	virtual void Execute(string);
+	virtual void Execute();
 	void ReadParameters();
 	string ColorToString(color c);
 };

@@ -10,7 +10,7 @@ ActionSave::ActionSave(ApplicationManager* pApp):Action(pApp)
 {
 }
 
-void ActionSave::Execute(string filename="saver")
+void ActionSave::Execute()
 {
 	if(filename!="saver")
 	{
