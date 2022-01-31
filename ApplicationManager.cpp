@@ -11,6 +11,7 @@
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
+#include "Actions/ActionSwitchToPlay.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -165,6 +166,10 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			UI.InterfaceMode = MODE_DRAW;
 			break;
 
+		
+		case TO_PLAY:
+			newAct = new ActionSwitchToPlay(this);
+			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
