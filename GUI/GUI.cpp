@@ -232,8 +232,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_BACK2:  return BACK2;
 			}
 		}
-	}
-	else	//GUI is in PLAY mode
+	}//GUI is in PLAY mode
 	else if( UI.InterfaceMode == MODE_PLAY)	//GUI is in PLAY mode
 	{
 		///TODO:
