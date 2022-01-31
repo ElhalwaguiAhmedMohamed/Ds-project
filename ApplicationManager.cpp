@@ -162,11 +162,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case RESIZE:
 			newAct = new ActionResize(this, SelectedFig);
-			mode = 1;
-			break;
-
-		case BACK: 
-			UI.InterfaceMode = MODE_DRAW;
 			break;
 
 		

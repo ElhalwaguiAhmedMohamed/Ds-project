@@ -1,4 +1,5 @@
 #include "ActionResize.h"
+#include <iostream>
 
 ActionResize::ActionResize(ApplicationManager *pApp,CFigure *selected):Action(pApp), Selected(selected)
 {
@@ -9,7 +10,9 @@ void ActionResize::ReadActionParameters() {
 }
 void ActionResize::Execute()
 {
+	cout << "fjdsklfj";
 	GUI* pGui = pManager->GetGUI();
+	pGui->ClearToolBar();
 	pGui->CreateResizeToolBar();
 
 	if (Selected != NULL)
@@ -47,8 +50,8 @@ void ActionResize::Execute()
 		}
 		else if (pAct == BACK2)
 		{
-			pManager->CreateAction(BACK);
-			pGui->ClearToolBar();
+			Action* act = pManager->CreateAction(GO_BACK);
+			act->Execute();
 			//pManager->set_selected(NULL);
 			//pManager->Unselect(NULL);
 			//pManager->set_LastMessage("");
@@ -56,7 +59,7 @@ void ActionResize::Execute()
 		}
 		pGui->ClearDrawArea();
 		pManager->UpdateInterface();
-		Execute();
+		Execute(); //recursion
 	}
 	else
 		pManager->set_LastMessage("Firstly, Select a fig");

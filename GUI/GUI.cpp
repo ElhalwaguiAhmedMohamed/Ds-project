@@ -352,7 +352,6 @@ void GUI::CreateDrawToolBar() const
 
 void GUI::CreateResizeToolBar() const
 {
-	ClearToolBar();
 	
 	UI.InterfaceMode = MODE_SIZE;
 

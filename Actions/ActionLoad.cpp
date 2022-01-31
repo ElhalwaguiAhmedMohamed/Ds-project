@@ -9,35 +9,44 @@
 #include "../Figures//CSquare.h"
 #include "..\Figures\CHex.h"
 #include "../Figures/CEllipse.h"
-
-ActionLoad :: ActionLoad(ApplicationManager *pMan) :Action(pMan) //chain 
+#include <iostream>
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+ActionLoad :: ActionLoad(ApplicationManager *pMan , int _force) :Action(pMan) //chain 
 {
-
+	force = _force;
 }
 
-void ActionLoad::ReadParameters() 
-{
-	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("Please write the file you want to load :)");
-	FileName = pGui->GetSrting(); //get the written string from the user
-
-}
+//void ActionLoad::ReadParameters() 
+//{
+//	GUI* pGui = pManager->GetGUI();
+//	pGui->PrintMessage("Please write the file you want to load :)");
+//	FileName = pGui->GetSrting(); //get the written string from the user
+//
+//}
 
 
 void ActionLoad::Execute()
 {
-	
-	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");
-	string s = pGui->GetSrting();
-	if (s == "Y" || s == "y") {
-		Action* newAct = new ActionSave(pManager);
-		pManager->ExecuteAction(newAct);
+	if (force == 1) {
 		load();
 	}
 	else {
-		load();
+		GUI* pGui = pManager->GetGUI();
+		pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");
+		string s = pGui->GetSrting();
+		if (s == "Y" || s == "y") {
+			Action* newAct = new ActionSave(pManager);
+			pManager->ExecuteAction(newAct);
+			load();
+		}
+		else {
+			load();
+		}
 	}
+
 
 }
 
@@ -49,9 +58,38 @@ void ActionLoad::load() {
 	string shape, drawColor, fillColor, bgColor;
 	int numberOfShapes;
 	CFigure* figure = NULL;
-	ReadParameters(); // get the file to start reading lines from it
 
-	inputFile.open(FileName + ".txt"); //open the saved file as text
+	if (force == 0) {
+		char filename[MAX_PATH];
+
+		OPENFILENAME ofn;
+		ZeroMemory(&filename, sizeof(filename));
+		ZeroMemory(&ofn, sizeof(ofn));
+		ofn.lStructSize = sizeof(ofn);
+		ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+		ofn.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
+		ofn.lpstrFile = filename;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.lpstrTitle = "Select a File, yo!";
+		ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+		if (GetOpenFileNameA(&ofn))
+		{
+			std::cout << "You chose the file \"" << filename << "\"\n";
+		}
+		inputFile.open(ofn.lpstrFile);
+	}
+	else {
+		inputFile.open("saver.txt");
+
+	}
+	
+
+	
+	
+	
+	//ReadParameters(); // get the file to start reading lines from it
+
+	 //open the saved file as text
 	pGui->ClearDrawArea(); //clear the current gui from any shapes
 	//check if the file opened successfully 
 	if (inputFile.fail()) {
@@ -84,9 +122,10 @@ void ActionLoad::load() {
 	}
 
 	pManager->UpdateInterface();
-	pGui->PrintMessage("Graph loaded successfully :)");
+	//pGui->PrintMessage("Graph loaded successfully :)");
 	pGui->ClearStatusBar();
 	pGui->CreateStatusBar();
+	pGui->PrintMessage("Graph loaded successfully :)");
 }
 
 color ActionLoad::convertToColor(string s) {
