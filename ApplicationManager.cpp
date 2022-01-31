@@ -1,17 +1,30 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionAddEllipse.h"
+#include "Actions\ActionDelete.h"
 #include "Actions\ActionAddHex.h"
+#include "Actions\ActionOpenPalette.h"
+#include "Actions\ActionChngColor.h"
+#include "Actions\ActionChngFillColor.h"
+#include "Actions\ActionChngBkColor.h"
+#include "Actions\ActionSwitchToDrawMode.h"
 #include "Actions\ActionBack.h"
 #include "Actions\ActionFront.h"
 
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
+#include "Actions/ActionExit.h"
+#include "Actions/ActionSwitchToPlay.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Actions\ActionSelect.h"
+#include "Actions\ActionBack.h"
+#include "Actions\ActionFront.h"
+
+
 //Constructor
-ApplicationManager::ApplicationManager()
+ApplicationManager::ApplicationManager() : mode(0)
 {
 	//Create Input and output
 	pGUI = new GUI;	
@@ -67,10 +80,66 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			///create AddLineAction here
 			newAct = new ActionAddEllipse(this);
 			break;
+
 		case DRAW_HEX:
 			newAct = new ActionAddHex(this);
 			break;
-		
+		case OPEN_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this,1);
+			break;
+		case SET_RED:
+			newAct = new ActionChngColor(this, 1);
+			break;
+		case SET_GREEN:
+			newAct = new ActionChngColor(this, 2);
+			break;
+		case SET_BLUE:
+			newAct = new ActionChngColor(this, 3);
+			break;
+		case SET_YELLOW:
+			newAct = new ActionChngColor(this, 4);
+			break;
+		case GO_BACK:
+			newAct = new ActionSwitchToDrawMode(this);
+			break;
+		case OPEN_FILL_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this, 2);
+			break;
+		case SET_FILL_RED:
+			newAct = new ActionChngFillColor(this, 1);
+			break;
+		case SET_FILL_GREEN:
+			newAct = new ActionChngFillColor(this, 2);
+			break;
+		case SET_FILL_BLUE:
+			newAct = new ActionChngFillColor(this, 3);
+			break;
+		case SET_FILL_YELLOW:
+			newAct = new ActionChngFillColor(this, 4);
+			break;
+		case OPEN_BKGRND_PALETTE_BAR:
+			newAct = new ActionOpenPalette(this, 3);
+			break;
+		case SET_BK_RED:
+			newAct = new ActionChngBkColor(this, 1);
+			break;
+		case SET_BK_GREEN:
+			newAct = new ActionChngBkColor(this, 2);
+			break;
+		case SET_BK_BLUE:
+			newAct = new ActionChngBkColor(this, 3);
+			break;
+		case SET_BK_YELLOW:
+			newAct = new ActionChngBkColor(this, 4);
+			break;
+
+		case DEL:
+			newAct = new ActionDelete(this);
+			break;
+
+		case DRAWING_AREA:
+			newAct = new ActionSelect(this);
+			break;
 
 		case SAVE:
 			newAct = new ActionSave(this);
@@ -78,9 +147,10 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case LOAD:
 			newAct = new ActionLoad(this);
 			break;
+
 		case EXIT:
 			///create ExitAction here
-			
+			newAct = new ActionExit(this);
 			break;
 
 		case BRNG_FRNT:
@@ -90,8 +160,19 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case SEND_BACK :
 			newAct = new SendBack(this);
 			break;
-		
+		case RESIZE:
+			newAct = new ActionResize(this, SelectedFig);
+			mode = 1;
+			break;
 
+		case BACK: 
+			UI.InterfaceMode = MODE_DRAW;
+			break;
+
+		
+		case TO_PLAY:
+			newAct = new ActionSwitchToPlay(this);
+			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
@@ -131,6 +212,12 @@ void ApplicationManager::SaveAll(ofstream &outputfile)
 //==================================================================================//
 
 //Add a figure to the list of figures
+CFigure** ApplicationManager::getFigList(){
+	return FigList;
+};
+int* ApplicationManager::getFigCount() {
+	return &FigCount;
+};
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
@@ -142,10 +229,33 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
-
-	///Add your code here to search for a figure given a point x,y	
-
+	for (int i = FigCount - 1; i >= 0; i--)
+		if (FigList[i]->Get(x, y))
+			return FigList[i];
 	return NULL;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+CFigure* ApplicationManager::GetSelectedFigure() const
+{
+	//check if a figure selected
+ 	for (int i = (FigCount - 1); i >= 0; i--) {
+		if (FigList[i]->IsSelected()) return FigList[i];
+	}
+	return NULL;
+}
+void ApplicationManager::set_selected(CFigure* fig)   //set the selcted figure. We need it on copy, cut, paste and delete actions
+{
+	SelectedFig = fig;
+}
+
+void ApplicationManager::Unselect(CFigure* fig)  // Select the last figures ONLY
+{
+	for (int i = 0; i < FigCount; ++i)
+		if (FigList[i] != fig)
+		{
+			FigList[i]->SetSelected(false);
+			FigList[i]->assignStored();
+		}
 }
 //==================================================================================//
 //							Interface Management Functions							//
@@ -156,6 +266,18 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+
+	
+	if (UI.InterfaceMode == MODE_DRAW)
+	{
+
+		pGUI->CreateDrawToolBar();
+	}
+	else if (UI.InterfaceMode == MODE_SIZE) {
+		pGUI->CreateResizeToolBar();
+		
+	}
+	
 }
 void ApplicationManager::DeleteList() {
 	for (int i = 0; i < FigCount; i++)
@@ -175,7 +297,10 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
-
+void ApplicationManager::set_LastMessage(string s)
+{
+	LastMessage = s;
+}
 //==================================================================================//
 //							Send To Back											//
 //==================================================================================//

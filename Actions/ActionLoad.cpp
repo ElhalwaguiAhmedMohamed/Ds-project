@@ -5,6 +5,7 @@
 #include "..\ApplicationManager.h"
 #include "..\GUI\Input.h"
 #include "..\GUI\\Output.h"
+#include "../Actions/ActionSave.h"
 #include "../Figures//CSquare.h"
 #include "..\Figures\CHex.h"
 #include "../Figures/CEllipse.h"
@@ -25,15 +26,32 @@ void ActionLoad::ReadParameters()
 
 void ActionLoad::Execute()
 {
+	
+	GUI* pGui = pManager->GetGUI();
+	pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");
+	string s = pGui->GetSrting();
+	if (s == "Y" || s == "y") {
+		Action* newAct = new ActionSave(pManager);
+		pManager->ExecuteAction(newAct);
+		load();
+	}
+	else {
+		load();
+	}
+
+}
+
+
+void ActionLoad::load() {
 	ifstream inputFile;
 	bool flag = false;
 	GUI* pGui = pManager->GetGUI();
-	string shape, drawColor, fillColor , bgColor;
+	string shape, drawColor, fillColor, bgColor;
 	int numberOfShapes;
-	CFigure* figure= NULL;
+	CFigure* figure = NULL;
 	ReadParameters(); // get the file to start reading lines from it
 
-	inputFile.open(FileName+".txt"); //open the saved file as text
+	inputFile.open(FileName + ".txt"); //open the saved file as text
 	pGui->ClearDrawArea(); //clear the current gui from any shapes
 	//check if the file opened successfully 
 	if (inputFile.fail()) {
@@ -51,7 +69,7 @@ void ActionLoad::Execute()
 	while (numberOfShapes) {
 		inputFile >> shape;
 		if (shape == "SQR") {
-			figure = new CSquare; 
+			figure = new CSquare;
 		}
 		else if (shape == "HEX") {
 			figure = new CHex;
@@ -59,7 +77,7 @@ void ActionLoad::Execute()
 		else if (shape == "ELLIPSE") {
 			figure = new CEllipse;
 		}
-		
+
 		figure->Load(inputFile);
 		pManager->AddFigure(figure);
 		numberOfShapes--;
@@ -69,8 +87,6 @@ void ActionLoad::Execute()
 	pGui->PrintMessage("Graph loaded successfully :)");
 	pGui->ClearStatusBar();
 	pGui->CreateStatusBar();
-
-
 }
 
 color ActionLoad::convertToColor(string s) {

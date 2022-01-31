@@ -322,6 +322,7 @@ jpeg_consume_input (j_decompress_ptr cinfo)
     retcode = JPEG_REACHED_SOS;
     break;
   case DSTATE_PRELOAD:
+  
   case DSTATE_PRESCAN:
   case DSTATE_SCANNING:
   case DSTATE_RAW_OK:

@@ -18,7 +18,7 @@ void ActionAddSquare::Execute()
 
 
 	GfxInfo SqrGfxInfo;
-	SqrGfxInfo.isFilled = false;	//default is not filled
+	SqrGfxInfo.isFilled = pGUI->getColorIsFilled();	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
 	SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
@@ -60,6 +60,9 @@ void ActionAddSquare::Execute()
 
 		//Step 4 - Add the Square to the list of figures
 		pManager->AddFigure(R);
+
 	}
 	
 }
+		
+	

@@ -24,6 +24,7 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
+
 color CFigure::StringToColor(string s) {
 	if (s == "BLACK")
 		return BLACK;
@@ -82,4 +83,29 @@ void CFigure::setStored()
 	storedFill = FigGfxInfo.FillClr;
 	storedDraw = FigGfxInfo.DrawClr;
 	IsFilled = FigGfxInfo.isFilled;
+}
+
+color CFigure::GetCurrentDrawClr() {
+	return FigGfxInfo.DrawClr;
+}
+
+void CFigure::ChngSelectClr(color Dclr) {
+
+	FigGfxInfo.PreviousClr = Dclr;
+}
+color CFigure::ChngSelectClr() {
+	return FigGfxInfo.PreviousClr;
+}
+
+
+void CFigure::assignStored()
+{
+	FigGfxInfo.isFilled = IsFilled;
+	FigGfxInfo.FillClr = storedFill;
+	FigGfxInfo.DrawClr = storedDraw;
+}
+
+void CFigure::setSize(float size)
+{
+	FigGfxInfo.Resize_Factor = 0;
 }

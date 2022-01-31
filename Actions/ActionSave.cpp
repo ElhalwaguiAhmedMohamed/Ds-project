@@ -13,10 +13,12 @@ ActionSave::ActionSave(ApplicationManager* pApp):Action(pApp)
 
 void ActionSave::Execute()
 {
-
-	ReadParameters();
+	if(filename!="saver")
+	{
+		ReadParameters();
+	}
 	GUI* pGui = pManager->GetGUI();
-	ofstream outputfile((filename + ".txt"), ios::app);
+	ofstream outputfile((filename + ".txt"));
 	if (outputfile.is_open())
 	{
 		outputfile << ColorToString(UI.DrawColor)
@@ -36,6 +38,9 @@ void ActionSave::Execute()
 	
 	
 }
+
+
+
 
 void ActionSave::ReadParameters()
 {
