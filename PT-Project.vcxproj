@@ -136,6 +136,7 @@
     <ClCompile Include="Actions\ActionChngFillColor.cpp" />
     <ClCompile Include="Actions\ActionOpenPalette.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
+    <ClCompile Include="Actions\ActionPlayWithColors.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Actions\ActionChngFillColor.h" />
     <ClInclude Include="Actions\ActionOpenPalette.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
+    <ClInclude Include="Actions\ActionPlayWithColors.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
     <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionSave.h" />

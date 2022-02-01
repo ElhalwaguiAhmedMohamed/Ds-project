@@ -16,6 +16,7 @@
 #include "Actions/ActionSwitchToPlay.h"
 #include "Actions\ActionSelect.h"
 #include"Actions/ActionResize.h"
+#include "Actions/ActionPlayWithColors.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -165,7 +166,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case TO_PLAY:
 			newAct = new ActionSwitchToPlay(this);
 			break;
-		
+
+		case PLAY_COLORS:
+			newAct = new ActionPlayWithColors(this);
+			break;
+
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
 			break;
