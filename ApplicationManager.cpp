@@ -8,20 +8,17 @@
 #include "Actions\ActionChngFillColor.h"
 #include "Actions\ActionChngBkColor.h"
 #include "Actions\ActionSwitchToDrawMode.h"
-#include "Actions\ActionBack.h"
-#include "Actions\ActionFront.h"
-
+#include "Actions\ActionSendBack.h"
+#include "Actions\ActionBringFront.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
 #include "Actions/ActionSwitchToPlay.h"
+#include "Actions\ActionSelect.h"
+#include"Actions/ActionResize.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Actions\ActionSelect.h"
-#include "Actions\ActionBack.h"
-#include "Actions\ActionFront.h"
-
 
 //Constructor
 ApplicationManager::ApplicationManager() : mode(0)
@@ -158,7 +155,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 
 		case SEND_BACK :
-			newAct = new SendBack(this);
+			newAct = new ActionSendBack(this);
 			break;
 		case RESIZE:
 			newAct = new ActionResize(this, SelectedFig);

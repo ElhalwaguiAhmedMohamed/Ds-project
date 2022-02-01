@@ -181,10 +181,10 @@
     <ClCompile Include="Actions\ActionExit.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ActionBack.cpp">
+    <ClCompile Include="ActionSendBack.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ActionFront.cpp">
+    <ClCompile Include="ActionBringFront.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionResize.cpp">
@@ -321,10 +321,10 @@
     <ClInclude Include="Actions\ActionExit.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\ActionBack.h">
+    <ClInclude Include="Actions\ActionSendBack.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\ActionFront.h">
+    <ClInclude Include="Actions\ActionBringFront.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionResize.h">

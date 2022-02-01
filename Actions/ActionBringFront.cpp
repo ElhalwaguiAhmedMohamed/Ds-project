@@ -1,9 +1,9 @@
 
-#include "Actions/ActionFront.h"
+#include "ActionBringFront.h"
 
-#include "ApplicationManager.h"
+#include "../ApplicationManager.h"
 
-#include "GUI/GUI.h"
+#include "../GUI/GUI.h"
 
 ActionBringFront::ActionBringFront(ApplicationManager* pApp) :Action(pApp)
 {

@@ -1,5 +1,5 @@
-#ifndef SEND_FRONT_H
-#define SEND_FRONT_H
+#ifndef ACTION_BRING_FRONT_H
+#define ACTION_BRING_FRONT_H
 
 #include "Action.h"
 

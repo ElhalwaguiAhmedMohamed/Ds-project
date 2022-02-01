@@ -4,7 +4,6 @@
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include <fstream>
-#include"Actions/ActionResize.h"
 class Action;	//Forward Declaration
 
 
