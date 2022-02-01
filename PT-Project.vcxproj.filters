@@ -181,10 +181,10 @@
     <ClCompile Include="Actions\ActionExit.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ActionSendBack.cpp">
+    <ClCompile Include="Actions\ActionSendBack.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ActionBringFront.cpp">
+    <ClCompile Include="Actions\ActionBringFront.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionResize.cpp">

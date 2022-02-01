@@ -141,8 +141,8 @@
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSwitchToDrawMode.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
-    <ClCompile Include="ActionSendBack.cpp" />
-    <ClCompile Include="ActionBringFront.cpp" />
+    <ClCompile Include="Actions\ActionSendBack.cpp" />
+    <ClCompile Include="Actions\ActionBringFront.cpp" />
     <ClCompile Include="Actions\ActionResize.cpp" />
     <ClCompile Include="Actions\ActionSwitchToPlay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
