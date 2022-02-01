@@ -14,7 +14,7 @@ GUI::GUI()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 50;
+	UI.MenuItemWidth = 60;
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.IsFilled = false;
 	UI.FillColor = IVORY;	//Filling color
@@ -539,7 +539,7 @@ void GUI::CreateColorToolBar() const {
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < COLOR_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth - 5, UI.ToolBarHeight);
 
 
 
