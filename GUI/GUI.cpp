@@ -13,7 +13,7 @@ GUI::GUI()
 
 	
 	UI.StatusBarHeight = 50;
-	UI.ToolBarHeight = 50;
+	UI.ToolBarHeight = 45;
 	UI.MenuItemWidth = 60;
 	UI.DrawColor = BLACK;	//Drawing color
 	UI.IsFilled = false;
