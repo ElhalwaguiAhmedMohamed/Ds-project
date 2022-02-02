@@ -1,5 +1,8 @@
 #include "CHex.h"
 #include <fstream>
+
+int CHex::hexCount = 0;
+
 CHex::CHex() : CFigure() {}
 CHex::CHex(Point P1, int len, int rlen, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -9,6 +12,9 @@ CHex::CHex(Point P1, int len, int rlen, GfxInfo FigureGfxInfo) :CFigure(FigureGf
 
 	Center.x = (TopLeft.x + (TopLeft.x + Llen)) / 2;
 	Center.y = (TopLeft.y + (TopLeft.y + (2 * Rlen))) / 2;
+
+	hexCount++;
+	shapeType = 'h';
 }
 
 bool CHex::Get(int x, int y) const
@@ -100,3 +106,7 @@ void CHex::Resize(float size) {
 
 }
 
+
+int CHex::getCount() {
+	return hexCount;
+}

@@ -250,6 +250,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SHAPE: return PLAY_SHAPES;
 			case ITM_COLOR: return PLAY_COLORS;
 			case ITM_SHAPE_COLOR: return PLAY_SHAPES_COLORS;
+			case ITM_PLAY_LOAD:return LOAD;
 			case ITM_DRAW_BACK: return GO_BACK;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -310,7 +311,7 @@ void GUI::ClearStatusBar() const
 //////////////////////////////////////////////////////////////////////////////////////////
 void GUI::CreateDrawToolBar() const
 {
-	UI.InterfaceMode = MODE_DRAW;
+	//UI.InterfaceMode = MODE_DRAW;
 
 	//You can draw the tool bar icons in any way you want.
 	//Below is one possible way
@@ -384,6 +385,7 @@ void GUI::CreatePlayToolBar() const
 	MenuItemImages[ITM_SHAPE] = "images\\MenuItems\\shapesss.jpg";
 	MenuItemImages[ITM_COLOR] = "images\\MenuItems\\colorss.jpg";
 	MenuItemImages[ITM_SHAPE_COLOR] = "images\\MenuItems\\shapes_colors.jpg";
+	MenuItemImages[ITM_PLAY_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_DRAW_BACK] = "images\\MenuItems\\Menu_Back.jpg";
 
 

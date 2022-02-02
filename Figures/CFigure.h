@@ -9,6 +9,7 @@ class CFigure
 {
 protected:
 	static int MainID;
+	char shapeType;
 	int ID;	//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
@@ -38,7 +39,7 @@ public:
 	virtual void Resize(float) = 0;
 	//virtual string PrintInfo(GUI* pOut) = 0;	//print all figure info on the status bar
 	void assignStored();
-
+	char getShapeType();
 	void setSize(float);
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

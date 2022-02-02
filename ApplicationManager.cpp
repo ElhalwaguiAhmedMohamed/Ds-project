@@ -10,7 +10,10 @@
 #include "Actions\ActionSwitchToDrawMode.h"
 #include "Actions\ActionBack.h"
 #include "Actions\ActionFront.h"
-
+#include "./Actions/ActionPlayWithShapes.h"
+#include "Figures/CSquare.h"
+#include "Figures/CHex.h"
+#include "Figures/CEllipse.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
@@ -167,6 +170,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		
 		case TO_PLAY:
 			newAct = new ActionSwitchToPlay(this);
+			break;
+		case PLAY_SHAPES:
+			newAct = new ActionPlayWithShapes(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -339,3 +345,15 @@ int ApplicationManager::getSelectedFigure()
 	return -1;
 }
 
+
+int ApplicationManager::getEllipseCount() {
+	return CEllipse::getCount();
+}
+
+int ApplicationManager::getHexCount() {
+	return CHex::getCount();
+}
+
+int ApplicationManager::getSquareCount() {
+	return CSquare::getCount();
+}
