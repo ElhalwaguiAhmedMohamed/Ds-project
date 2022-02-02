@@ -33,6 +33,9 @@ void ActionLoad::Execute()
 	if (force == 1) {
 		load();
 	}
+	else if (UI.InterfaceMode == MODE_PLAY) { //if he is in play mode
+		load();
+	}
 	else {
 		GUI* pGui = pManager->GetGUI();
 		pGui->PrintMessage("If you want to save you graph before loading write (Y) else write (N) ");

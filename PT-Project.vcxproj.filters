@@ -196,6 +196,9 @@
     <ClCompile Include="Actions\ActionSwitchToPlay.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ActionPlayWithShapes.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
     <ClCompile Include="Actions\ActionPlayWithColors.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -337,6 +340,9 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionSwitchToPlay.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionPlayWithShapes.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionPlayWithColors.h">

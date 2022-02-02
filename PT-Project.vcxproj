@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActionPlayWithShapes.cpp" />
     <ClCompile Include="Actions\ActionAddEllipse.cpp" />
     <ClCompile Include="Actions\ActionAddHex.cpp" />
     <ClCompile Include="Actions\ActionChngBkColor.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Actions\ActionChngFillColor.h" />
     <ClInclude Include="Actions\ActionOpenPalette.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
+    <ClInclude Include="Actions\ActionPlayWithShapes.h" />
     <ClInclude Include="Actions\ActionPlayWithColors.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
     <ClInclude Include="Actions\ActionExit.h" />

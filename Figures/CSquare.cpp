@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string.h>
 
+int CSquare::squareCount = 0;
 
 CSquare::CSquare() {}
 CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
@@ -11,6 +12,7 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 	length = len;
 	Center.x = (P1.x + (P1.x + length)) / 2;
 	Center.y = (P1.y + (P1.y + length)) / 2;
+	squareCount++;
 }
 
 void CSquare::Save(ofstream& outputFile)
@@ -91,3 +93,7 @@ void CSquare::Load(ifstream &inputFile) {
 	this->setStored();
 }
 
+
+int CSquare::getCount() {
+	return squareCount;
+}

@@ -1,6 +1,8 @@
 #include "CEllipse.h"
 #include <fstream>
 
+int CEllipse::ellipseCount = 0;
+
 CEllipse::CEllipse(): CFigure(){}
 CEllipse::CEllipse(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -10,6 +12,8 @@ CEllipse::CEllipse(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfx
 	Center.y = (P1.y + P2.y) / 2;
 	a = abs(TopLeft.x - Center.x);
 	b = abs(TopLeft.y - Center.y);
+	ellipseCount++;
+	shapeType = 'e';
 }
 
 bool CEllipse::Get(int x, int y) const
@@ -103,4 +107,8 @@ void CEllipse::Resize(float size) {
 	this->LowerRight.x = this->LowerRight.x * size;
 	this->LowerRight.y = this->LowerRight.y * size;
 
+}
+
+int CEllipse::getCount() {
+	return ellipseCount;
 }

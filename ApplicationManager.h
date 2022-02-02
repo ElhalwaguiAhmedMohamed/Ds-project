@@ -21,7 +21,6 @@ private:
 	string LastMessage;
 	CFigure* SelectedFig; //Pointer to the selected figure
 
-
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -47,6 +46,9 @@ public:
 	void set_selected(CFigure*); //Setting Selected
 	void Unselect(CFigure*);   //Unselect all figures except a paritcular figure
 	void DeleteList();
+	int getSquareCount();
+	int getEllipseCount();
+	int getHexCount();
 	
 
 	void SendToBack(int selectedIndex);

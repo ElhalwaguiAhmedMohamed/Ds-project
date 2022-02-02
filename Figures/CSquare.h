@@ -10,6 +10,7 @@ private:
 	Point Corner1;
 	Point Corner2;
 	int length;
+	static int squareCount ;
 	Point Center;
 public:
 	CSquare();
@@ -20,6 +21,7 @@ public:
 	virtual void Load(ifstream& inputfile);
 	virtual void DrawMe(GUI* pOut) const;
 	virtual void Resize(float);
+	static int getCount();
 };
 
 #endif

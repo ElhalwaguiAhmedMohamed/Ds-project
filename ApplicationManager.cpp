@@ -10,6 +10,10 @@
 #include "Actions\ActionSwitchToDrawMode.h"
 #include "Actions\ActionSendBack.h"
 #include "Actions\ActionBringFront.h"
+#include "./Actions/ActionPlayWithShapes.h"
+#include "Figures/CSquare.h"
+#include "Figures/CHex.h"
+#include "Figures/CEllipse.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
@@ -166,6 +170,10 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case TO_PLAY:
 			newAct = new ActionSwitchToPlay(this);
 			break;
+		case PLAY_SHAPES:
+			newAct = new ActionPlayWithShapes(this);
+			break;
+		
 
 		case PLAY_COLORS:
 			newAct = new ActionPlayWithColors(this);
@@ -341,3 +349,15 @@ int ApplicationManager::getSelectedFigure()
 	return -1;
 }
 
+
+int ApplicationManager::getEllipseCount() {
+	return CEllipse::getCount();
+}
+
+int ApplicationManager::getHexCount() {
+	return CHex::getCount();
+}
+
+int ApplicationManager::getSquareCount() {
+	return CSquare::getCount();
+}
