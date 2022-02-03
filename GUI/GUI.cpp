@@ -390,11 +390,21 @@ void GUI::DrawHex(Point TopLeft, int Llen, int Rlen, GfxInfo RectGfxInfo, bool s
 	else
 		style = FRAME;
 	//2.4- Calculate array of points :
-	int hX[6] = { TopLeft.x, TopLeft.x + Llen , TopLeft.x + (1.5 * Llen), (TopLeft.x + Llen), TopLeft.x, abs(TopLeft.x - (0.5 * Llen)) };
-	int hY[6] = { TopLeft.y,TopLeft.y, TopLeft.y + Rlen, TopLeft.y + (2 * Rlen), TopLeft.y + (2 * Rlen), abs(TopLeft.y + Rlen) };
-
-	//pWind->DrawRectangle(P1.x, P1.y, P1.x + length, P1.y + length, style);
-	pWind->DrawPolygon(hX, hY, 6, style);
+	int px1 = TopLeft.x, px2 = TopLeft.x + Llen, px3 = TopLeft.x + (1.5 * Llen), px4 = (TopLeft.x + Llen), px5 = px1, px6 = TopLeft.x - (0.5 * Llen);
+	int py1 = TopLeft.y, py2 = py1, py3 = TopLeft.y + Rlen, py4 = TopLeft.y + (2 * Rlen), py5 = py4, py6 = TopLeft.y + Rlen;
+	int hX[6] = { px1,px2,px3,px4,px5,px6 };
+	int hY[6] = { py1,py2,py3,py4,py5,py6 };
+	for (int i = 0; i < 6; i++)
+	{
+		if (!(hY[i] >= UI.ToolBarHeight && hY[i] < UI.height - UI.StatusBarHeight))
+		{
+			PrintMessage("the drawing will go out of the drawing area");
+			return;
+		}
+		pWind->DrawPolygon(hX, hY, 6, style);
+	}
+	
+	
 }
 //======================================================================================//
 //							    Change Color Functions										//

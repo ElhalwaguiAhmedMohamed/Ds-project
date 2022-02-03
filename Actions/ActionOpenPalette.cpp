@@ -25,5 +25,6 @@ void ActionOpenPalette::Execute()
 	GUI* pGUI = pManager->GetGUI();
 	pGUI->ClearToolBar();
 	pGUI->CreateColorToolBar();
+	pGUI->ClearStatusBar();
 
 }
