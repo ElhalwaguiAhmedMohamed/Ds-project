@@ -139,6 +139,30 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new ActionSelect(this);
 			break;
 
+		case BRNG_FRNT:
+			newAct = new ActionBringFront(this);
+			break;
+
+		case SEND_BACK:
+			newAct = new ActionSendBack(this);
+			break;
+		case RESIZE:
+			newAct = new ActionResize(this, SelectedFig);
+			break;
+
+
+		case TO_PLAY:
+			newAct = new ActionSwitchToPlay(this);
+			break;
+
+		case PLAY_COLORS:
+			newAct = new ActionPlayWithColors(this);
+			break;
+
+		case STATUS:	//a click on the status bar ==> no action
+			return NULL;
+			break;
+
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
@@ -151,29 +175,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new ActionExit(this);
 			break;
 
-		case BRNG_FRNT:
-			newAct = new ActionBringFront(this);
-			break;
-
-		case SEND_BACK :
-			newAct = new ActionSendBack(this);
-			break;
-		case RESIZE:
-			newAct = new ActionResize(this, SelectedFig);
-			break;
-
 		
-		case TO_PLAY:
-			newAct = new ActionSwitchToPlay(this);
-			break;
-
-		case PLAY_COLORS:
-			newAct = new ActionPlayWithColors(this);
-			break;
-
-		case STATUS:	//a click on the status bar ==> no action
-			return NULL;
-			break;
 
 
 	}	
@@ -339,5 +341,25 @@ int ApplicationManager::getSelectedFigure()
 		if (FigList[i]->IsSelected())
 			return i;
 	return -1;
+}
+
+void ApplicationManager::getFiguresColors(int* frequencyColor)
+{
+	color* colors = new color[FigCount];
+	for (int i = 0; i < FigCount; i++)
+	{
+		colors[i] = FigList[i]->GetCurrentFillClr();
+		if (colors[i] == RED)
+			frequencyColor[0]++;
+		else if (colors[i] == GREEN)
+			frequencyColor[1]++;
+		else if (colors[i] == BLUE)
+			frequencyColor[2]++;
+		else if (colors[i] == YELLOW)
+			frequencyColor[3]++;
+		else
+			frequencyColor[4]++;
+	}
+	delete[] colors;
 }
 

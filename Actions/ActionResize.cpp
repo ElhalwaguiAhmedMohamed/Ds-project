@@ -10,7 +10,6 @@ void ActionResize::ReadActionParameters() {
 }
 void ActionResize::Execute()
 {
-	cout << "fjdsklfj";
 	GUI* pGui = pManager->GetGUI();
 	pGui->ClearToolBar();
 	pGui->CreateResizeToolBar();
