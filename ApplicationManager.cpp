@@ -349,13 +349,13 @@ void ApplicationManager::getFiguresColors(int* frequencyColor)
 	for (int i = 0; i < FigCount; i++)
 	{
 		colors[i] = FigList[i]->GetCurrentFillClr();
-		if (colors[i] == RED)
+		if ((colors[i].ucBlue == RED.ucBlue) &&(colors[i].ucGreen == RED.ucGreen) && (colors[i].ucRed == RED.ucRed))
 			frequencyColor[0]++;
-		else if (colors[i] == GREEN)
+		else if ((colors[i].ucBlue == GREEN.ucBlue) && (colors[i].ucGreen == GREEN.ucGreen) && (colors[i].ucRed == GREEN.ucRed))
 			frequencyColor[1]++;
-		else if (colors[i] == BLUE)
+		else if ((colors[i].ucBlue == BLUE.ucBlue) && (colors[i].ucGreen == BLUE.ucGreen) && (colors[i].ucRed == BLUE.ucRed))
 			frequencyColor[2]++;
-		else if (colors[i] == YELLOW)
+		else if ((colors[i].ucBlue == YELLOW.ucBlue) && (colors[i].ucGreen == YELLOW.ucGreen) && (colors[i].ucRed == YELLOW.ucRed))
 			frequencyColor[3]++;
 		else
 			frequencyColor[4]++;
