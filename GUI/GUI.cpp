@@ -6,8 +6,8 @@ GUI::GUI()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1200;
-	UI.height = 800;
+	UI.width = 1000;
+	UI.height = 500;
 	UI.wx = 5;
 	UI.wy =5;
 
