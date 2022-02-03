@@ -1,6 +1,7 @@
 #include "ActionPlayWithColors.h"
 #include "../ApplicationManager.h"
 #include <vector>
+#include <iostream>
 ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pApp)
 {
 
@@ -9,22 +10,24 @@ ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pAp
 void ActionPlayWithColors::Execute()
 {
 	// getting figures colors count
-	int* figuresColors = new int[4]{ 0 };
+	int* figuresColors = new int[5]{ 0 };
 	pManager->getFiguresColors(figuresColors);
+	
 	GUI* pGui = pManager->GetGUI();
-	int countEmpty = 0;
-	for (int i = 0; i < 4; i++)
+	int count = 0;
+	for (int i = 0; i < 5; i++)
 	{
-		if (figuresColors[i] == 0)
-			countEmpty++;
+		if (figuresColors[i] != 0)
+			count++;
+		if (count > 0) break;
 	}
-	if (countEmpty == 0) // if all elements is zero then there are no figures
+	if (count == 0) // if all elements is zero then there are no figures
 		pGui->PrintMessage("Draw shapes in draw mode first or load a graph :)");
 	else {
 		int randomColorsGenerator;
 		bool regenerate = true;  //randomizing what to choose
 		do {
-			randomColorsGenerator = rand() % 4 + 1;
+			randomColorsGenerator = rand() % 5 + 1;
 			if (randomColorsGenerator == 1 && figuresColors[0] != 0) {
 				regenerate = false;
 			}
@@ -37,10 +40,13 @@ void ActionPlayWithColors::Execute()
 			else if (randomColorsGenerator == 4 && figuresColors[3] != 0) {
 				regenerate = false;
 			}
+			else if (randomColorsGenerator == 5 && figuresColors[4] != 0) {
+				regenerate = false;
+			}
 		} while (regenerate);
 		if (randomColorsGenerator == 1) {
 			pGui->PrintMessage("Choose Shapes with fill color \"RED\"");
-			if()
+			
 		}
 		else if (randomColorsGenerator == 2) {
 			pGui->PrintMessage("Choose Shapes with fill color \"GREEN\"");
@@ -51,6 +57,10 @@ void ActionPlayWithColors::Execute()
 		else if (randomColorsGenerator == 4)
 		{
 			pGui->PrintMessage("Choose Shapes with fill color \"YELLOW\"");
+		}
+		else
+		{
+			pGui->PrintMessage("Choose Shapes with No Fill");
 		}
 	}
 }
