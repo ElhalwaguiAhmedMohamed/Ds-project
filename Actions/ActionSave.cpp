@@ -1,4 +1,5 @@
 #include<iostream>
+
 #include "ActionSave.h"
 #include "..\Figures\CSquare.h"
 #include "..\Figures\CEllipse.h"
@@ -6,16 +7,20 @@
 #include "..\ApplicationManager.h"
 
 #include "..\GUI\GUI.h"
-ActionSave::ActionSave(ApplicationManager* pApp):Action(pApp)
+ActionSave::ActionSave(ApplicationManager* pApp, int _force) :Action(pApp)
 {
+	force = _force;
 }
 
 void ActionSave::Execute()
 {
-
-	ReadParameters();
+	if (force == 0)
+		ReadParameters();
+	else
+		filename = "saver";
+	
 	GUI* pGui = pManager->GetGUI();
-	ofstream outputfile((filename + ".txt"), ios::app);
+	ofstream outputfile((filename + ".txt"));
 	if (outputfile.is_open())
 	{
 		outputfile << ColorToString(UI.DrawColor)
@@ -36,6 +41,9 @@ void ActionSave::Execute()
 	
 }
 
+
+
+
 void ActionSave::ReadParameters()
 {
 	GUI* Pgui = pManager->GetGUI();
@@ -52,6 +60,7 @@ void ActionSave::ReadParameters()
 		
 }
 string ActionSave::ColorToString(color c) {
+	
 	if ((c.ucBlue == BLACK.ucBlue) && (c.ucGreen == BLACK.ucGreen) && (c.ucRed == BLACK.ucRed ))
 		return "BLACK";
 	if ((c.ucBlue == BLUE.ucBlue) && (c.ucGreen == BLUE.ucGreen) && (c.ucRed == BLUE.ucRed))
@@ -74,5 +83,7 @@ string ActionSave::ColorToString(color c) {
 		return "SKYBLUE";
 	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
 		return "LIGHTSTEELBLUE";
+	if ((c.ucBlue == IVORY.ucBlue) && (c.ucGreen == IVORY.ucGreen) && (c.ucRed == IVORY.ucRed))
+		return"IVORY";
 	return "NO-FILL";
 }

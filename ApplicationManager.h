@@ -4,6 +4,7 @@
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include <fstream>
+#include"Actions/ActionResize.h"
 class Action;	//Forward Declaration
 
 
@@ -13,11 +14,13 @@ class ApplicationManager
 	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
-	int FigCount;		//Actual number of figures
+	int FigCount,mode;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	//Pointers to Input and Output classes
 	GUI* pGUI;
+	string LastMessage;
+	CFigure* SelectedFig; //Pointer to the selected figure
 
 public:	
 	ApplicationManager(); 
@@ -40,8 +43,26 @@ public:
 	void SaveAll(ofstream&);
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
-	void UpdateInterface() const;	//Redraws all the drawing window	
+	void UpdateInterface() const;	//Redraws all the drawing window
+	void set_selected(CFigure*); //Setting Selected
+	void Unselect(CFigure*);   //Unselect all figures except a paritcular figure
 	void DeleteList();
+	int getSquareCount();
+	int getEllipseCount();
+	int getHexCount();
+	
+
+	void SendToBack(int selectedIndex);
+
+	void BringToFront(int selectedIndex);
+
+	void set_LastMessage(string); // saving the last message
+	
+
+	int getSelectedFigure();
+	void Resize();
+
+	
 };
 
 #endif

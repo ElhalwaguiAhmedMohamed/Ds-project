@@ -1,10 +1,13 @@
 #include "CFigure.h"
-
+int CFigure::MainID = 0;
 CFigure::CFigure(){}
+
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+	ID = ++MainID;
+	shapeType = 's';
 }
 
 void CFigure::SetSelected(bool s)
@@ -21,6 +24,7 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
 }
+
 
 color CFigure::StringToColor(string s) {
 	if (s == "BLACK")
@@ -45,6 +49,8 @@ color CFigure::StringToColor(string s) {
 		return SKYBLUE;
 	if (s == "LIGHTSTEELBLUE")
 		return LIGHTSTEELBLUE;
+	if (s == "IVORY")
+		return IVORY;
 	return BLACK;
 }
 
@@ -71,6 +77,8 @@ string CFigure::ColorToString(color c) {
 		return "SKYBLUE";
 	if ((c.ucBlue == LIGHTSTEELBLUE.ucBlue) && (c.ucGreen == LIGHTSTEELBLUE.ucGreen) && (c.ucRed == LIGHTSTEELBLUE.ucRed))
 		return "LIGHTSTEELBLUE";
+	if ((c.ucBlue == IVORY.ucBlue) && (c.ucGreen == IVORY.ucGreen) && (c.ucRed == IVORY.ucRed))
+		return"IVORY";
 	return "NO-FILL";
 }
 
@@ -92,4 +100,21 @@ void CFigure::ChngSelectClr(color Dclr) {
 }
 color CFigure::ChngSelectClr() {
 	return FigGfxInfo.PreviousClr;
+}
+
+
+void CFigure::assignStored()
+{
+	FigGfxInfo.isFilled = IsFilled;
+	FigGfxInfo.FillClr = storedFill;
+	FigGfxInfo.DrawClr = storedDraw;
+}
+
+void CFigure::setSize(float size)
+{
+	FigGfxInfo.Resize_Factor = 0;
+}
+
+char CFigure::getShapeType() {
+	return this->shapeType;
 }

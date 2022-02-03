@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string.h>
 
+int CSquare::squareCount = 0;
 
 CSquare::CSquare() {}
 CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
@@ -11,23 +12,23 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 	length = len;
 	Center.x = (P1.x + (P1.x + length)) / 2;
 	Center.y = (P1.y + (P1.y + length)) / 2;
+	squareCount++;
 }
 
 void CSquare::Save(ofstream& outputFile)
 {
 	if (outputFile.is_open())
 	{
-		/*cout << "here" << endl;*/
 		outputFile << "SQR"
-			<< " " << ID
-			<< " " << TopLeftCorner.x
-			<< " " << TopLeftCorner.y
-			<< " " << length
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeftCorner.x
+			<< "\t" << TopLeftCorner.y
+			<< "\t" << length
+			<< "\t\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 	
@@ -57,7 +58,10 @@ void CSquare::DrawMe(GUI* pGUI) const
 	//Call Output::DrawRect to draw a Square on the screen	
 	pGUI->DrawSquare(TopLeftCorner, length, FigGfxInfo, Selected);
 }
-
+ void CSquare::Resize(float size){
+	this->length= this->length* size;
+		 
+}
 void CSquare::Load(ifstream &inputFile) {
 	string borderColor , fillColor;
 	//int borderWidth; //to read the width of each figure's border
@@ -89,3 +93,7 @@ void CSquare::Load(ifstream &inputFile) {
 	this->setStored();
 }
 
+
+int CSquare::getCount() {
+	return squareCount;
+}

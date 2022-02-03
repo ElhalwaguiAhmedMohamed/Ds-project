@@ -1,5 +1,8 @@
 #include "CHex.h"
 #include <fstream>
+
+int CHex::hexCount = 0;
+
 CHex::CHex() : CFigure() {}
 CHex::CHex(Point P1, int len, int rlen, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -9,6 +12,9 @@ CHex::CHex(Point P1, int len, int rlen, GfxInfo FigureGfxInfo) :CFigure(FigureGf
 
 	Center.x = (TopLeft.x + (TopLeft.x + Llen)) / 2;
 	Center.y = (TopLeft.y + (TopLeft.y + (2 * Rlen))) / 2;
+
+	hexCount++;
+	shapeType = 'h';
 }
 
 bool CHex::Get(int x, int y) const
@@ -78,18 +84,29 @@ void CHex::Save(ofstream& outputFile)
 	{
 		/*cout << "here" << endl;*/
 		outputFile << "HEX"
-			<< " " << ID
-			<< " " << TopLeft.x
-			<< " " << TopLeft.y
-			<< " " << Llen
-			<< " " << Rlen
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeft.x
+			<< "\t" << TopLeft.y
+			<< "\t" << Llen
+			<< "\t" << Rlen
+			<< "\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 
 
+}
+
+void CHex::Resize(float size) {
+	this->Llen = this->Llen * size;
+	this->Rlen = this->Rlen * size;
+
+}
+
+
+int CHex::getCount() {
+	return hexCount;
 }

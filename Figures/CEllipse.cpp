@@ -1,6 +1,8 @@
 #include "CEllipse.h"
 #include <fstream>
 
+int CEllipse::ellipseCount = 0;
+
 CEllipse::CEllipse(): CFigure(){}
 CEllipse::CEllipse(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -10,6 +12,8 @@ CEllipse::CEllipse(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfx
 	Center.y = (P1.y + P2.y) / 2;
 	a = abs(TopLeft.x - Center.x);
 	b = abs(TopLeft.y - Center.y);
+	ellipseCount++;
+	shapeType = 'e';
 }
 
 bool CEllipse::Get(int x, int y) const
@@ -83,18 +87,28 @@ void CEllipse::Save(ofstream& outputFile)
 	{
 		/*cout << "here" << endl;*/
 		outputFile << "ELLIPSE"
-			<< " " << ID
-			<< " " << TopLeft.x
-			<< " " << TopLeft.y
-			<< " " << LowerRight.x
-			<< " " << LowerRight.y
-			<< " " << ColorToString(this->FigGfxInfo.DrawClr);
+			<< "\t" << ID
+			<< "\t" << TopLeft.x
+			<< "\t" << TopLeft.y
+			<< "\t" << LowerRight.x
+			<< "\t" << LowerRight.y
+			<< "\t" << ColorToString(this->FigGfxInfo.DrawClr);
 		if (!this->FigGfxInfo.isFilled)
-			outputFile << " " << "NO-FILL";
+			outputFile << "\t" << "NO-FILL";
 		else
-			outputFile << " " << ColorToString(this->FigGfxInfo.FillClr);
+			outputFile << "\t" << ColorToString(this->FigGfxInfo.FillClr);
 		outputFile << "\n";
 	}
 
 
+}
+
+void CEllipse::Resize(float size) {
+	this->LowerRight.x = this->LowerRight.x * size;
+	this->LowerRight.y = this->LowerRight.y * size;
+
+}
+
+int CEllipse::getCount() {
+	return ellipseCount;
 }

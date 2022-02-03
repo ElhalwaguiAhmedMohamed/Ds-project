@@ -7,7 +7,10 @@ class CSquare : public CFigure
 {
 private:
 	Point TopLeftCorner;	
+	Point Corner1;
+	Point Corner2;
 	int length;
+	static int squareCount ;
 	Point Center;
 public:
 	CSquare();
@@ -17,6 +20,8 @@ public:
 	virtual void Save(ofstream& outputfile);
 	virtual void Load(ifstream& inputfile);
 	virtual void DrawMe(GUI* pOut) const;
+	virtual void Resize(float);
+	static int getCount();
 };
 
 #endif

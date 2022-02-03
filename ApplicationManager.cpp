@@ -8,17 +8,26 @@
 #include "Actions\ActionChngFillColor.h"
 #include "Actions\ActionChngBkColor.h"
 #include "Actions\ActionSwitchToDrawMode.h"
+#include "Actions\ActionBack.h"
+#include "Actions\ActionFront.h"
+#include "./Actions/ActionPlayWithShapes.h"
+#include "Figures/CSquare.h"
+#include "Figures/CHex.h"
+#include "Figures/CEllipse.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionSave.h"
 #include "Actions/ActionExit.h"
+#include "Actions/ActionSwitchToPlay.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "Actions\ActionSelect.h"
+#include "Actions\ActionBack.h"
+#include "Actions\ActionFront.h"
 
 
 //Constructor
-ApplicationManager::ApplicationManager()
+ApplicationManager::ApplicationManager() : mode(0)
 {
 	//Create Input and output
 	pGUI = new GUI;	
@@ -146,10 +155,31 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			///create ExitAction here
 			newAct = new ActionExit(this);
 			break;
+
+		case BRNG_FRNT:
+			newAct = new ActionBringFront(this);
+			break;
+
+		case SEND_BACK :
+			newAct = new SendBack(this);
+			break;
+		case RESIZE:
+			newAct = new ActionResize(this, SelectedFig);
+			break;
+
+		
+		case TO_PLAY:
+			newAct = new ActionSwitchToPlay(this);
+			break;
+		case PLAY_SHAPES:
+			newAct = new ActionPlayWithShapes(this);
+			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
 			break;
+
+
 	}	
 	return newAct;
 }
@@ -214,6 +244,20 @@ CFigure* ApplicationManager::GetSelectedFigure() const
 	}
 	return NULL;
 }
+void ApplicationManager::set_selected(CFigure* fig)   //set the selcted figure. We need it on copy, cut, paste and delete actions
+{
+	SelectedFig = fig;
+}
+
+void ApplicationManager::Unselect(CFigure* fig)  // Select the last figures ONLY
+{
+	for (int i = 0; i < FigCount; ++i)
+		if (FigList[i] != fig)
+		{
+			FigList[i]->SetSelected(false);
+			FigList[i]->assignStored();
+		}
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -223,6 +267,18 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+
+	
+	if (UI.InterfaceMode == MODE_DRAW)
+	{
+
+		pGUI->CreateDrawToolBar();
+	}
+	else if (UI.InterfaceMode == MODE_SIZE) {
+		pGUI->CreateResizeToolBar();
+		
+	}
+	
 }
 void ApplicationManager::DeleteList() {
 	for (int i = 0; i < FigCount; i++)
@@ -242,4 +298,62 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
+void ApplicationManager::set_LastMessage(string s)
+{
+	LastMessage = s;
+}
+//==================================================================================//
+//							Send To Back											//
+//==================================================================================//
 
+void ApplicationManager::SendToBack(int selectedIndex)
+{
+	if (selectedIndex != 0)
+	{
+		for (int i = selectedIndex; i > 0; i--)
+		{
+			CFigure* temp = FigList[i];
+			FigList[i] = FigList[i - 1];
+			FigList[i - 1] = temp;
+		}
+	}
+}
+//==================================================================================//
+//							Bring To Front											//
+//==================================================================================//
+
+void ApplicationManager::BringToFront(int selectedIndex)
+{
+	if (selectedIndex != FigCount - 1)
+	{
+		for (int i = selectedIndex; i < FigCount - 1; i++)
+		{
+			CFigure* temp = FigList[i];
+			FigList[i] = FigList[i+1];
+			FigList[i+1] = temp;
+		}
+		
+	}
+}
+
+int ApplicationManager::getSelectedFigure()
+{
+
+	for (int i = 0; i < FigCount; i++)
+		if (FigList[i]->IsSelected())
+			return i;
+	return -1;
+}
+
+
+int ApplicationManager::getEllipseCount() {
+	return CEllipse::getCount();
+}
+
+int ApplicationManager::getHexCount() {
+	return CHex::getCount();
+}
+
+int ApplicationManager::getSquareCount() {
+	return CSquare::getCount();
+}

@@ -181,7 +181,22 @@
     <ClCompile Include="Actions\ActionExit.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ActionBack.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionFront.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionResize.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
     <ClCompile Include="Actions\ActionDelete.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionSwitchToPlay.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionPlayWithShapes.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -309,7 +324,22 @@
     <ClInclude Include="Actions\ActionExit.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\ActionBack.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionFront.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionResize.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
     <ClInclude Include="Actions\ActionDelete.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionSwitchToPlay.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionPlayWithShapes.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

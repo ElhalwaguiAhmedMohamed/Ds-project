@@ -12,6 +12,7 @@ private:
 	Point Center;
 	int a;
 	int b;
+	static int ellipseCount ;
 public:
 	CEllipse();
 	CEllipse(Point, Point, GfxInfo FigureGfxInfo);
@@ -20,6 +21,9 @@ public:
 	virtual void Load(ifstream& inputfile);
 	virtual void Save(ofstream& outputfile);
 	virtual void DrawMe(GUI* pOut) const;
+	virtual void Resize(float);
+	static  int getCount();
+	
 };
 
 #endif

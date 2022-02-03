@@ -28,6 +28,9 @@ enum ActionType //The actions supported (you can add more if needed)
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color
+	PLAY_SHAPES,    //play with only shapes
+	PLAY_COLORS,	//play with only colors
+	PLAY_SHAPES_COLORS, //PLay with shapes and colors
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
 	RESIZE,			//Resize a figure(s)
@@ -43,9 +46,18 @@ enum ActionType //The actions supported (you can add more if needed)
 	EMPTY,			//A click on empty place in the toolbar
 
 	TO_DRAW,		//Switch interface to Draw mode
-	TO_PLAY			//Switch interface to Play mode
-
+	TO_PLAY,	//Switch interface to Play mode
+	BACK,
 	///TODO: Add more action types (if needed)
+
+
+	////// Actions of Size mode //////
+	TO_SIZE,
+	HALF,
+	QUARTER,
+	DOUBLE1,
+	QUADRUPLE,
+	BACK2
 };
 
 struct Point	//To be used for figures points
@@ -58,7 +70,7 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
 	int BorderWdth = 2;	//Width of figure borders
-
+	float Resize_Factor;//Size Factor
 };
 
 #endif
