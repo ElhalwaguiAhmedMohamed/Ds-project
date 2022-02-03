@@ -37,7 +37,7 @@ void ActionAddHex::Execute()
 
 	pGUI->ClearStatusBar();
 
-	if (P1.y < 50 || P2.y < 50 || P1.y>650 || P2.y>650)
+	if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight || P1.y>(UI.height - UI.StatusBarHeight) || P2.y>(UI.height - UI.StatusBarHeight))
 	{
 		pGUI->PrintMessage("draw inside drawing area");
 	}
@@ -60,7 +60,7 @@ void ActionAddHex::Execute()
 		//Step 3 - Create a Hex with the parameters read from the user
 		CHex* H = new CHex(TopLeft, Llen, R, SqrGfxInfo);
 
-		//Step 4 - Add the Square to the list of figures
+		//Step 4 - Add the hex to the list of figures
 		pManager->AddFigure(H);
 	}
 }
