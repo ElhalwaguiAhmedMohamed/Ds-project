@@ -345,7 +345,7 @@ void GUI::CreateDrawToolBar() const
 
 	//Draw menu item one image at a time
 	for(int i=0; i<DRAW_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth - 5, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
 	pWind->SetPen(CORNFLOWERBLUE, 3);

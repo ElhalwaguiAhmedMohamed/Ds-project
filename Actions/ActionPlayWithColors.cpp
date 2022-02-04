@@ -1,5 +1,6 @@
 #include "ActionPlayWithColors.h"
 #include "ActionDelete.h"
+#include "ActionLoad.h"
 #include "../ApplicationManager.h"
 ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pApp)
 {
@@ -8,6 +9,9 @@ ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pAp
 
 void ActionPlayWithColors::Execute()
 {
+	// Load File saved from Draw Mode
+	Action* newAct = new ActionLoad(pManager,1);
+	newAct->Execute();
 	// getting figures colors count
 	int* figuresColors = new int[5]{ 0 };
 	pManager->getFiguresColors(figuresColors);

@@ -4,11 +4,12 @@
 #include "..\ApplicationManager.h"
 #include <string>
 #include <iostream>
-int ActionSelect::selectedEllipses = 0;
-int ActionSelect::selectedHexagons = 0;
-int ActionSelect::selectedSquares = 0;
 ActionSelect::ActionSelect(ApplicationManager* pApp) :Action(pApp) ///constructor chaining
-{}
+{
+	selectedEllipses = 0;
+	selectedHexagons = 0;
+	selectedSquares = 0;
+}
 
 void ActionSelect::Execute()
 {
@@ -22,11 +23,11 @@ void ActionSelect::Execute()
 		pGUI->GetPointClicked(cx, cy);
 
 		CFigure* fig = pManager->GetFigure(cx, cy);
-		
-		
 
-	
-	if (fig != NULL) {
+
+
+
+		if (fig != NULL) {
 
 			if (fig->IsSelected()) {
 				fig->ChngDrawClr(fig->ChngSelectClr());
@@ -40,7 +41,7 @@ void ActionSelect::Execute()
 				fig->SetSelected(true);
 				*selectedFigCount = *selectedFigCount - 1;
 				pGUI->PrintMessage(fig->ShowFigureDetails());
-				
+
 
 			}
 		}
@@ -54,7 +55,7 @@ void ActionSelect::Execute()
 			}
 		}
 	}
-	else if(UI.InterfaceMode = MODE_PLAY) { ///selecting in playmode to delete the sahpe after selection
+	else if (UI.InterfaceMode == MODE_PLAY) { ///selecting in playmode to delete the sahpe after selection
 		int cx;
 		int cy;
 
@@ -64,17 +65,17 @@ void ActionSelect::Execute()
 
 		CFigure* fig = pManager->GetFigure(cx, cy);
 
-		if (fig != NULL) 
+		if (fig != NULL)
 		{
 
-			if (fig->IsSelected()) 
+			if (fig->IsSelected())
 			{
 				fig->ChngDrawClr(fig->ChngSelectClr());
 				fig->SetSelected(false);
 				*selectedFigCount = *selectedFigCount - 1;
 				pGUI->ClearStatusBar();
 			}
-			else 
+			else
 			{
 				fig->ChngSelectClr(fig->GetCurrentDrawClr());
 				fig->ChngDrawClr(CADETBLUE);
@@ -82,7 +83,7 @@ void ActionSelect::Execute()
 				*selectedFigCount = *selectedFigCount + 1;
 				pGUI->PrintMessage(fig->ShowFigureDetails());
 				if (fig->getShapeType() == 's') {
-					selectedSquares++;  
+					selectedSquares++;
 				}
 				else if (fig->getShapeType() == 'h') {
 					selectedHexagons++;
@@ -92,7 +93,7 @@ void ActionSelect::Execute()
 				}
 			}
 		}
-		else 
+		else
 		{
 
 			CFigure* selectedFiguer = pManager->GetSelectedFigure();
@@ -106,11 +107,11 @@ void ActionSelect::Execute()
 		Action* newAct = new ActionDelete(pManager);
 		pManager->ExecuteAction(newAct);
 		//showing the game score 
-		cout << pManager->getSquareCount() << endl << selectedSquares << endl;
+		/*cout << pManager->getSquareCount() << endl << selectedSquares << endl;
 		cout << pManager->getEllipseCount() << endl << selectedEllipses << endl;
-		cout << pManager->getHexCount() << endl << selectedHexagons << endl;
-		if (selectedSquares == pManager->getSquareCount() && pManager->getSquareCount()!=0) {
-			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + ", Wrong choices count is "+ to_string(selectedEllipses+selectedHexagons)+" and number of Correct choices is "+to_string(selectedSquares)+" :)";
+		cout << pManager->getHexCount() << endl << selectedHexagons << endl;*/
+		if (selectedSquares == pManager->getSquareCount() && pManager->getSquareCount() != 0) {
+			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + ", Wrong choices count is " + to_string(selectedEllipses + selectedHexagons) + " and number of Correct choices is " + to_string(selectedSquares) + " :)";
 			pGUI->PrintMessage(message);
 		}
 		else if (selectedEllipses == pManager->getEllipseCount() && pManager->getEllipseCount() != 0) {
@@ -118,16 +119,9 @@ void ActionSelect::Execute()
 			pGUI->PrintMessage(message);
 		}
 		else if (selectedHexagons == pManager->getHexCount() && pManager->getHexCount() != 0) {
-			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + " Hexagons"+ ", Wrong choices count is " + to_string(selectedEllipses + selectedSquares) + " and number of Correct choices is " + to_string(selectedHexagons) + " :)";
+			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + " Hexagons" + ", Wrong choices count is " + to_string(selectedEllipses + selectedSquares) + " and number of Correct choices is " + to_string(selectedHexagons) + " :)";
 			pGUI->PrintMessage(message);
 		}
 	}
-	
-}
 
-
-void ActionSelect::resetSelectedFigures() {
-	ActionSelect::selectedEllipses = 0;
-	 ActionSelect::selectedHexagons = 0;
-	 ActionSelect::selectedSquares = 0;
 }

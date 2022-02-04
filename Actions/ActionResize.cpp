@@ -1,7 +1,7 @@
 #include "ActionResize.h"
 #include <iostream>
 
-ActionResize::ActionResize(ApplicationManager *pApp,CFigure *selected):Action(pApp), Selected(selected)
+ActionResize::ActionResize(ApplicationManager* pApp, CFigure* selected) :Action(pApp), Selected(selected)
 {
 
 }
@@ -11,11 +11,10 @@ void ActionResize::ReadActionParameters() {
 void ActionResize::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
-	pGui->ClearToolBar();
-	pGui->CreateResizeToolBar();
-
-	if (Selected != NULL)
-	{
+	int selectedIndex = pManager->getSelectedFigure();
+	if (selectedIndex != -1) {
+		pGui->ClearToolBar();
+		pGui->CreateResizeToolBar();
 		ActionType pAct = pGui->MapInputToActionType();
 		Selected = pManager->GetSelectedFigure();
 		if (pAct == HALF)
@@ -28,11 +27,11 @@ void ActionResize::Execute()
 		}
 		else if (pAct == DOUBLE1)
 		{
-			Selected->Resize(2.0);	
+			Selected->Resize(2.0);
 		}
 		else if (pAct == QUADRUPLE)
 		{
-			Selected->Resize(4);	
+			Selected->Resize(4);
 		}
 		else if (pAct == BACK2)
 		{
@@ -45,6 +44,6 @@ void ActionResize::Execute()
 		Execute(); //recursion
 	}
 	else
-		pManager->set_LastMessage("Firstly, Select a fig");
+		pGui->PrintMessage("Select a shape before you can perform this action");
 }
 

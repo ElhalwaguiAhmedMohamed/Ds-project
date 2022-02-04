@@ -51,7 +51,6 @@ public:
 	int getSquareCount();
 	int getEllipseCount();
 	int getHexCount();
-	void resetSelectedFiguresInPlayMode();
 	
 
 	void SendToBack(int selectedIndex);

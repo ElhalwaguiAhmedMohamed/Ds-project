@@ -4,20 +4,19 @@
 #include "Action.h"
 #include "ActionDelete.h"
 //Add Select Action class
-class ActionSelect :  public Action
+class ActionSelect : public Action
 {
 private:
-	static int selectedSquares;
-	static int selectedHexagons;
-	static int selectedEllipses;
+	int selectedSquares;
+	int selectedHexagons;
+	int selectedEllipses;
 public:
-	
+
 	ActionSelect(ApplicationManager* pApp);
 
 
 	//Add Select to the ApplicationManager
 	virtual void Execute();
-	static void resetSelectedFigures();
-	
+
 };
 #endif

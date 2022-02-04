@@ -1,15 +1,18 @@
 #include "Actions/ActionPlayWithShapes.h"
+#include "Actions/ActionLoad.h"
 #include "ApplicationManager.h"
 #include "GUI/GUI.h"
 #include <math.h>
 #include <iostream>
 
 ActionPlayWithShapes::ActionPlayWithShapes(ApplicationManager* pMan) :Action(pMan) {
-
+	
 }
 
 
 void ActionPlayWithShapes::Execute() {
+	Action* newAct = new ActionLoad(pManager, 1);
+	newAct->Execute();
 	int squareCount = pManager->getSquareCount();
 	int ellipseCount = pManager->getEllipseCount();
 	int hexCount = pManager->getHexCount();
@@ -38,7 +41,6 @@ void ActionPlayWithShapes::Execute() {
 			} while (regenerate);
 			if (randomShapesGenerator == 1) {
 				pGui->PrintMessage("Choose squares");
-				squareCount = pManager->getSquareCount();
 			}
 			else if (randomShapesGenerator == 2) {
 				pGui->PrintMessage("Choose ellipses");
