@@ -7,9 +7,7 @@
 #include <iostream>
 ActionSelect::ActionSelect(ApplicationManager* pApp) :Action(pApp) ///constructor chaining
 {
-	selectedEllipses = 0;
-	selectedHexagons = 0;
-	selectedSquares = 0;
+
 }
 
 void ActionSelect::Execute()
