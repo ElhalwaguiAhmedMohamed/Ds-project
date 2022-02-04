@@ -38,7 +38,7 @@ void ActionSelect::Execute()
 				fig->ChngSelectClr(fig->GetCurrentDrawClr());
 				fig->ChngDrawClr(CADETBLUE);
 				fig->SetSelected(true);
-				*selectedFigCount = *selectedFigCount - 1;
+				*selectedFigCount = *selectedFigCount + 1;
 				pGUI->PrintMessage(fig->ShowFigureDetails());
 
 
