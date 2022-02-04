@@ -32,6 +32,7 @@ ApplicationManager::ApplicationManager() : mode(0)
 	pGUI = new GUI;	
 	
 	FigCount = 0;
+	selectedFigCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -223,6 +224,10 @@ CFigure** ApplicationManager::getFigList(){
 int* ApplicationManager::getFigCount() {
 	return &FigCount;
 };
+int* ApplicationManager::getSelectedFigCount() {
+	return &selectedFigCount;
+	
+};
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
@@ -360,4 +365,8 @@ int ApplicationManager::getHexCount() {
 
 int ApplicationManager::getSquareCount() {
 	return CSquare::getCount();
+}
+
+void ApplicationManager::resetSelectedFiguresInPlayMode() {
+	ActionSelect::resetSelectedFigures();
 }

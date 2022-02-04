@@ -13,13 +13,21 @@ ActionChngFillColor::ActionChngFillColor(ApplicationManager* pApp, int f) :Actio
 void ActionChngFillColor::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
-
-	switch (Flag)
+	
+	color allColors[4] = { RED ,GREEN ,BLUE ,YELLOW };
+	setSelectedFillColor(allColors[Flag - 1]);
+	/*switch (Flag)
 	{
 	case 1:
-		UI.IsFilled = true;
-		pGui->getColorIsFilled();
-		UI.FillColor = RED;
+		if (*selectedFigCount == 0)
+		{
+			UI.IsFilled = true;
+			pGui->getColorIsFilled();
+			UI.FillColor = allColors[0];
+		}else {
+			pManager->setSelectedFillColor(allColors[0]);
+		}
+		
 		break;
 	case 2:
 		UI.IsFilled = true;
@@ -36,7 +44,31 @@ void ActionChngFillColor::Execute()
 		pGui->getColorIsFilled();
 		UI.FillColor = YELLOW;
 		break;
-	};
+	};*/
+
+
+}
+void ActionChngFillColor::setSelectedFillColor(color figFillColor)
+{
+	GUI* pGUI = pManager->GetGUI();
+	int* Figs = pManager->getFigCount();
+	CFigure** FigsList = pManager->getFigList();
+	int* selectedFigCount = pManager->getSelectedFigCount();
+	if (*selectedFigCount == 0)
+	{
+		UI.IsFilled = true;
+		pGUI->getColorIsFilled();
+		UI.FillColor = figFillColor;
+	}
+	else {
+		for (int i = 0; i < *Figs; i++) {
+			if (FigsList[i]->IsSelected()) {
+				FigsList[i]->ChngFillClr(figFillColor);
+			}
+		}
+		pGUI->ClearDrawArea();
+		pManager->UpdateInterface();
+	}
 
 
 }

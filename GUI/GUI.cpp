@@ -19,9 +19,9 @@ GUI::GUI()
 	UI.IsFilled = false;
 	UI.FillColor = IVORY;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
-	UI.BkGrndColor = IVORY;	//Background color
+	UI.BkGrndColor = HONEYDEW;	//Background color
 	UI.ToolBarBkGrndColor = WHITE; //toolbar background color
-	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
+	UI.HighlightColor = PLUM;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = CORNFLOWERBLUE;
 	UI.PenWidth = 2;	//width of the figures frames
 
@@ -323,17 +323,17 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\square.JPG";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\ellipse.JPG";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\hexagon.jpg";
-	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\c_p.jpg";
-	MenuItemImages[ITM_CHNG_FILL] = "images\\MenuItems\\Menu_FillColor.jpg";
-	MenuItemImages[ITM_CHNG_BK] = "images\\MenuItems\\Menu_BKColor.jpg";
-	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
-	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
-	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
-	MenuItemImages[ITM_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
-	MenuItemImages[ITM_TO_FRONT] = "images\\MenuItems\\Menu_Front.jpg";
-	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Resize.jpg";
+	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\colorpallette.jpg";
+	MenuItemImages[ITM_CHNG_FILL] = "images\\MenuItems\\fillcolor.jpg";
+	MenuItemImages[ITM_CHNG_BK] = "images\\MenuItems\\bgcolor.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\delete.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\save.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\load.jpg";
+	MenuItemImages[ITM_TO_BACK] = "images\\MenuItems\\sendtoback.jpg";
+	MenuItemImages[ITM_TO_FRONT] = "images\\MenuItems\\bringtofront.jpg";
+	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\resize.jpg";
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\play.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\exit.jpg";
 	
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -343,7 +343,7 @@ void GUI::CreateDrawToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTBLUE, 3);
+	pWind->SetPen(CORNFLOWERBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -361,7 +361,7 @@ void GUI::CreateResizeToolBar() const
 	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\2.jpg";
 	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\3.jpg";
 	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\4.jpg";
-	MenuItemImages[ITM_BACK2] = "images\\MenuItems\\Menu_Back_2.jpg";
+	MenuItemImages[ITM_BACK2] = "images\\MenuItems\\back.jpg";
 
 
 	///TODO: write code to create Color mode menu
@@ -371,7 +371,7 @@ void GUI::CreateResizeToolBar() const
 
 	
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTBLUE, 3);
+	pWind->SetPen(CORNFLOWERBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -385,8 +385,8 @@ void GUI::CreatePlayToolBar() const
 	MenuItemImages[ITM_SHAPE] = "images\\MenuItems\\shapesss.jpg";
 	MenuItemImages[ITM_COLOR] = "images\\MenuItems\\colorss.jpg";
 	MenuItemImages[ITM_SHAPE_COLOR] = "images\\MenuItems\\shapes_colors.jpg";
-	MenuItemImages[ITM_PLAY_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
-	MenuItemImages[ITM_DRAW_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+	MenuItemImages[ITM_PLAY_LOAD] = "images\\MenuItems\\load.jpg";
+	MenuItemImages[ITM_DRAW_BACK] = "images\\MenuItems\\back.jpg";
 
 
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
@@ -395,7 +395,7 @@ void GUI::CreatePlayToolBar() const
 
 
 	//Draw a line under the toolbar
-	pWind->SetPen(LIGHTBLUE, 3);
+	pWind->SetPen(CORNFLOWERBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 
 }
@@ -544,7 +544,7 @@ void GUI::CreateColorToolBar() const {
 	MenuItemImages[ITM_GREEN] = "images\\MenuItems\\Menu_Green.jpg";
 	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_Blue.jpg";
 	MenuItemImages[ITM_YELLOW] = "images\\MenuItems\\Menu_Yellow.jpg";
-	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\back.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 

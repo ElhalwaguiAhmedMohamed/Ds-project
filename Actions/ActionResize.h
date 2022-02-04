@@ -5,7 +5,7 @@
 
 class ActionResize:public Action
 {
-	CFigure* Selected;
+	CFigure* Selected = NULL;
 public :
 	ActionResize(ApplicationManager* pApp, CFigure*);
 

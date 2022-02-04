@@ -3,7 +3,9 @@
 
 int CEllipse::ellipseCount = 0;
 
-CEllipse::CEllipse(): CFigure(){}
+CEllipse::CEllipse(): CFigure(){
+	shapeType = 'e';
+}
 CEllipse::CEllipse(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	TopLeft = P1;

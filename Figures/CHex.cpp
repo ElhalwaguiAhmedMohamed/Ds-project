@@ -3,7 +3,9 @@
 
 int CHex::hexCount = 0;
 
-CHex::CHex() : CFigure() {}
+CHex::CHex() : CFigure() {
+	shapeType = 'h';
+}
 CHex::CHex(Point P1, int len, int rlen, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	TopLeft = P1;

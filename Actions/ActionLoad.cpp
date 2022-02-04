@@ -156,5 +156,7 @@ color ActionLoad::convertToColor(string s) {
 		return LIGHTSTEELBLUE;
 	if (s == "IVORY")
 		return IVORY;
+	if (s == "HONEYDEW")
+		return HONEYDEW;
 	return BLACK;
 }

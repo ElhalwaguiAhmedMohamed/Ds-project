@@ -17,6 +17,7 @@ public:
 
 	//Add Select to the ApplicationManager
 	virtual void Execute();
+	static void resetSelectedFigures();
 	
 };
 #endif

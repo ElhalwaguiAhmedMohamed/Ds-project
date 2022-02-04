@@ -18,6 +18,7 @@ void ActionSwitchToPlay::Execute() {
 	pGUI->ClearToolBar();
 	pGUI->CreatePlayToolBar();
 	pGUI->ClearStatusBar();
+	pManager->resetSelectedFiguresInPlayMode();
 	pGUI->PrintMessage("Welcome to play mode :)");
 	
 }
