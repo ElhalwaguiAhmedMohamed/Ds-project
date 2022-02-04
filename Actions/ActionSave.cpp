@@ -85,5 +85,7 @@ string ActionSave::ColorToString(color c) {
 		return "LIGHTSTEELBLUE";
 	if ((c.ucBlue == IVORY.ucBlue) && (c.ucGreen == IVORY.ucGreen) && (c.ucRed == IVORY.ucRed))
 		return"IVORY";
+	if ((c.ucBlue == HONEYDEW.ucBlue) && (c.ucGreen == HONEYDEW.ucGreen) && (c.ucRed == HONEYDEW.ucRed))
+		return"HONEYDEW";
 	return "NO-FILL";
 }

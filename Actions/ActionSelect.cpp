@@ -2,6 +2,7 @@
 #include "ActionDelete.h"
 #include "..\ApplicationManager.h"
 #include <string>
+#include <iostream>
 int ActionSelect::selectedEllipses = 0;
 int ActionSelect::selectedHexagons = 0;
 int ActionSelect::selectedSquares = 0;
@@ -29,7 +30,7 @@ void ActionSelect::Execute()
 			}
 			else {
 				fig->ChngSelectClr(fig->GetCurrentDrawClr());
-				fig->ChngDrawClr(MAGENTA);
+				fig->ChngDrawClr(CADETBLUE);
 				fig->SetSelected(true);
 				pGUI->PrintMessage(fig->ShowFigureDetails());
 				
@@ -46,7 +47,7 @@ void ActionSelect::Execute()
 			}
 		}
 	}
-	else if(UI.InterfaceMode = MODE_PLAY) {
+	else if(UI.InterfaceMode = MODE_PLAY) { ///selecting in playmode to delete the sahpe after selection
 		int cx;
 		int cy;
 
@@ -68,7 +69,7 @@ void ActionSelect::Execute()
 			else 
 			{
 				fig->ChngSelectClr(fig->GetCurrentDrawClr());
-				fig->ChngDrawClr(MAGENTA);
+				fig->ChngDrawClr(CADETBLUE);
 				fig->SetSelected(true);
 				pGUI->PrintMessage(fig->ShowFigureDetails());
 				if (fig->getShapeType() == 's') {
@@ -95,6 +96,9 @@ void ActionSelect::Execute()
 		Action* newAct = new ActionDelete(pManager);
 		pManager->ExecuteAction(newAct);
 		//showing the game score 
+		cout << pManager->getSquareCount() << endl << selectedSquares << endl;
+		cout << pManager->getEllipseCount() << endl << selectedEllipses << endl;
+		cout << pManager->getHexCount() << endl << selectedHexagons << endl;
 		if (selectedSquares == pManager->getSquareCount() && pManager->getSquareCount()!=0) {
 			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + ", Wrong choices count is "+ to_string(selectedEllipses+selectedHexagons)+" and number of Correct choices is "+to_string(selectedSquares)+" :)";
 			pGUI->PrintMessage(message);
@@ -109,4 +113,11 @@ void ActionSelect::Execute()
 		}
 	}
 	
+}
+
+
+void ActionSelect::resetSelectedFigures() {
+	ActionSelect::selectedEllipses = 0;
+	 ActionSelect::selectedHexagons = 0;
+	 ActionSelect::selectedSquares = 0;
 }

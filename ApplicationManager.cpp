@@ -357,3 +357,7 @@ int ApplicationManager::getHexCount() {
 int ApplicationManager::getSquareCount() {
 	return CSquare::getCount();
 }
+
+void ApplicationManager::resetSelectedFiguresInPlayMode() {
+	ActionSelect::resetSelectedFigures();
+}

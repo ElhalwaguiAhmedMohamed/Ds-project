@@ -7,7 +7,6 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	ID = ++MainID;
-	shapeType = 's';
 }
 
 void CFigure::SetSelected(bool s)
