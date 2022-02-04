@@ -144,30 +144,18 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new ActionSelect(this);
 			break;
 
-		case SAVE:
-			newAct = new ActionSave(this);
-			break;
-		case LOAD:
-			newAct = new ActionLoad(this);
-			break;
-
-		case EXIT:
-			///create ExitAction here
-			newAct = new ActionExit(this);
-			break;
-
 		case BRNG_FRNT:
 			newAct = new ActionBringFront(this);
 			break;
 
-		case SEND_BACK :
+		case SEND_BACK:
 			newAct = new ActionSendBack(this);
 			break;
 		case RESIZE:
 			newAct = new ActionResize(this, SelectedFig);
 			break;
 
-		
+
 		case TO_PLAY:
 			newAct = new ActionSwitchToPlay(this);
 			break;
@@ -183,6 +171,20 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return NULL;
 			break;
+
+		case SAVE:
+			newAct = new ActionSave(this);
+			break;
+		case LOAD:
+			newAct = new ActionLoad(this);
+			break;
+
+		case EXIT:
+			///create ExitAction here
+			newAct = new ActionExit(this);
+			break;
+
+		
 
 
 	}	
@@ -352,6 +354,26 @@ int ApplicationManager::getSelectedFigure()
 		if (FigList[i]->IsSelected())
 			return i;
 	return -1;
+}
+
+void ApplicationManager::getFiguresColors(int* frequencyColor)
+{
+	color* colors = new color[FigCount];
+	for (int i = 0; i < FigCount; i++)
+	{
+		colors[i] = FigList[i]->GetCurrentFillClr();
+		if ((colors[i].ucBlue == RED.ucBlue) &&(colors[i].ucGreen == RED.ucGreen) && (colors[i].ucRed == RED.ucRed))
+			frequencyColor[0]++;
+		else if ((colors[i].ucBlue == GREEN.ucBlue) && (colors[i].ucGreen == GREEN.ucGreen) && (colors[i].ucRed == GREEN.ucRed))
+			frequencyColor[1]++;
+		else if ((colors[i].ucBlue == BLUE.ucBlue) && (colors[i].ucGreen == BLUE.ucGreen) && (colors[i].ucRed == BLUE.ucRed))
+			frequencyColor[2]++;
+		else if ((colors[i].ucBlue == YELLOW.ucBlue) && (colors[i].ucGreen == YELLOW.ucGreen) && (colors[i].ucRed == YELLOW.ucRed))
+			frequencyColor[3]++;
+		else
+			frequencyColor[4]++;
+	}
+	delete[] colors;
 }
 
 

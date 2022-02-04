@@ -58,8 +58,13 @@ string GUI::GetSrting() const
 			return "";	//returns nothing as user has cancelled label
 		if(Key == 13 )	//ENTER key is pressed
 			return Label;
-		if(Key == 8 )	//BackSpace is pressed
-			Label.resize(Label.size() -1 );			
+		if (Key == 8)
+		{
+			if(Label.size()>0)
+				Label.resize(Label.size() - 1);
+
+		}//BackSpace is pressed
+					
 		else
 			Label+= Key;
 		PrintMessage(Label);

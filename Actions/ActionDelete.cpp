@@ -39,7 +39,8 @@ void ActionDelete::DeleteShape() {
 		}
 	}
 	if (figSelectFlag == 1) {
-		pGUI->PrintMessage("Figure Deleted");
+		if(UI.InterfaceMode == MODE_DRAW)
+			pGUI->PrintMessage("Figure Deleted");
 		pGUI->ClearDrawArea();
 		pManager->UpdateInterface();
 	}

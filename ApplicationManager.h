@@ -47,6 +47,7 @@ public:
 	void set_selected(CFigure*); //Setting Selected
 	void Unselect(CFigure*);   //Unselect all figures except a paritcular figure
 	void DeleteList();
+	void getFiguresColors(int*);
 	int getSquareCount();
 	int getEllipseCount();
 	int getHexCount();

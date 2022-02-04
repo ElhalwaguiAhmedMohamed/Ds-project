@@ -2,7 +2,7 @@
 #define ACTION_SELECT_H
 
 #include "Action.h"
-
+#include "ActionDelete.h"
 //Add Select Action class
 class ActionSelect :  public Action
 {

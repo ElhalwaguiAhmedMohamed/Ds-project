@@ -31,6 +31,7 @@ public:
 	virtual void Load(ifstream&) = 0;	 // Load Figure
 	virtual color StringToColor(string s) ;
 	color GetCurrentDrawClr();	//Get the current figure's fill color
+	color GetCurrentFillClr();
 	void ChngSelectClr(color Dclr);	//changes the figure's selection color
 	color ChngSelectClr();	//changes the figure's selection color
 	string ColorToString(color c);

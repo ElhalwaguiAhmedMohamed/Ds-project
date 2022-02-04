@@ -93,6 +93,11 @@ color CFigure::GetCurrentDrawClr() {
 	return FigGfxInfo.DrawClr;
 }
 
+color CFigure::GetCurrentFillClr()
+{
+	return FigGfxInfo.FillClr;
+}
+
 void CFigure::ChngSelectClr(color Dclr) {
 
 	FigGfxInfo.PreviousClr = Dclr;
