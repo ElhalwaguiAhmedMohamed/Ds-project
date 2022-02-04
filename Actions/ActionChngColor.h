@@ -13,7 +13,7 @@ public:
 
 	//Add Ellipse to the ApplicationManager
 	virtual void Execute();
-
+	virtual void setSelectedDrawColor(color figFillColor);
 };
 
 #endif
