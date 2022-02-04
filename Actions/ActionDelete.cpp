@@ -15,15 +15,8 @@ void  ActionDelete::ReadActionParameters()
 void ActionDelete::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
-
-	//pManager->set_selected();
-	//std::cout << "delete";
 	DeleteShape();
 
-	//deletedFigure = NULL;
-	//pGui->PrintMessage("Shape Is  Deleted");
-
-	//pGui->PrintMessage("Shape Is not Deleted");
 }
 ActionDelete::~ActionDelete()
 {

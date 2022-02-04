@@ -35,7 +35,7 @@ void ActionAddEllipse::Execute()
 
 	pGUI->ClearStatusBar();
 
-	if (P1.y < 50 || P2.y < 50 || P1.y>650 || P2.y>650)
+	if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight || P1.y>(UI.height - UI.StatusBarHeight) || P2.y>(UI.height - UI.StatusBarHeight))
 	{
 		pGUI->PrintMessage("draw inside drawing area");
 	}
