@@ -12,6 +12,7 @@ ActionSelect::ActionSelect(ApplicationManager* pApp) :Action(pApp) ///constructo
 
 void ActionSelect::Execute()
 {
+	int* selectedFigCount = pManager->getSelectedFigCount();
 	if (UI.InterfaceMode == MODE_DRAW) {
 		int cx;
 		int cy;
@@ -21,7 +22,7 @@ void ActionSelect::Execute()
 		pGUI->GetPointClicked(cx, cy);
 
 		CFigure* fig = pManager->GetFigure(cx, cy);
-		int* selectedFigCount = pManager->getSelectedFigCount();
+		
 		
 
 	

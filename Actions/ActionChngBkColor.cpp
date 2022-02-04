@@ -22,24 +22,28 @@ void ActionChngBkColor::Execute()
 		UI.BkGrndColor = RED;
 		pGui->ClearDrawArea();
 		pManager->UpdateInterface();
+		UI.InterfaceMode = MODE_DRAW;
 		pGui->CreateDrawToolBar();
 		break;
 	case 2:
 		UI.BkGrndColor = GREEN;
 		pGui->ClearDrawArea();
 		pManager->UpdateInterface();
+		UI.InterfaceMode = MODE_DRAW;
 		pGui->CreateDrawToolBar();
 		break;
 	case 3:
 		UI.BkGrndColor = BLUE;
 		pGui->ClearDrawArea();
 		pManager->UpdateInterface();
+		UI.InterfaceMode = MODE_DRAW;
 		pGui->CreateDrawToolBar();
 		break;
 	case 4:
 		UI.BkGrndColor = YELLOW;
 		pGui->ClearDrawArea();
 		pManager->UpdateInterface();
+		UI.InterfaceMode = MODE_DRAW;
 		pGui->CreateDrawToolBar();
 		break;
 	};
