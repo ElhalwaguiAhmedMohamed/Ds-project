@@ -16,29 +16,44 @@ void ActionSelect::Execute()
 	pGUI->GetPointClicked(cx, cy);
 
 	CFigure* fig = pManager->GetFigure(cx,cy);
+	if (UI.InterfaceMode != MODE_PLAY)
+	{
+		if (fig != NULL) {
 
-	if (fig != NULL) {
+			if (fig->IsSelected()) {
+				fig->ChngDrawClr(fig->ChngSelectClr());
+				fig->SetSelected(false);
+				pGUI->ClearStatusBar();
+			}
+			else {
+				fig->ChngSelectClr(fig->GetCurrentDrawClr());
+				fig->ChngDrawClr(MAGENTA);
+				fig->SetSelected(true);
+				pGUI->PrintMessage(fig->ShowFigureDetails());
 
-		if (fig->IsSelected()) {
-			fig->ChngDrawClr(fig->ChngSelectClr());
-			fig->SetSelected(false);
-			pGUI->ClearStatusBar();
+			}
 		}
-		else{
+		else {
+
+			CFigure* selectedFigure = pManager->GetSelectedFigure();
+			if (selectedFigure != NULL) {
+				selectedFigure->ChngDrawClr(selectedFigure->ChngSelectClr());
+				selectedFigure->SetSelected(false);
+				pGUI->ClearStatusBar();
+			}
+		}
+	}
+	else
+	{
+
+		if (fig != NULL) {
+
 			fig->ChngSelectClr(fig->GetCurrentDrawClr());
 			fig->ChngDrawClr(MAGENTA);
 			fig->SetSelected(true);
-			pGUI->PrintMessage(fig->ShowFigureDetails());
-			
+			Action* newAct = new ActionDelete(pManager);
+			newAct->Execute();
 		}
 	}
-	else {
-
-		CFigure* selectedFigure = pManager->GetSelectedFigure();
-		if (selectedFigure != NULL) {
-			selectedFigure->ChngDrawClr(selectedFigure->ChngSelectClr());
-			selectedFigure->SetSelected(false);
-			pGUI->ClearStatusBar();
-		}
-	}
+	
 }
