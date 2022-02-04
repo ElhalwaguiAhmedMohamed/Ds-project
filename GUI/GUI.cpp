@@ -255,7 +255,6 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SHAPE: return PLAY_SHAPES;
 			case ITM_COLOR: return PLAY_COLORS;
 			case ITM_SHAPE_COLOR: return PLAY_SHAPES_COLORS;
-			case ITM_PLAY_LOAD:return LOAD;
 			case ITM_DRAW_BACK: return GO_BACK;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -390,7 +389,6 @@ void GUI::CreatePlayToolBar() const
 	MenuItemImages[ITM_SHAPE] = "images\\MenuItems\\shapesss.jpg";
 	MenuItemImages[ITM_COLOR] = "images\\MenuItems\\colorss.jpg";
 	MenuItemImages[ITM_SHAPE_COLOR] = "images\\MenuItems\\shapes_colors.jpg";
-	MenuItemImages[ITM_PLAY_LOAD] = "images\\MenuItems\\load.jpg";
 	MenuItemImages[ITM_DRAW_BACK] = "images\\MenuItems\\back.jpg";
 
 
@@ -514,11 +512,11 @@ void GUI::DrawHex(Point TopLeft, int Llen, int Rlen, GfxInfo RectGfxInfo, bool s
 	int hY[6] = { py1,py2,py3,py4,py5,py6 };
 	for (int i = 0; i < 6; i++)
 	{
-		if (!(hY[i] >= UI.ToolBarHeight && hY[i] < UI.height - UI.StatusBarHeight))
+		/*if (!(hY[i] >= UI.ToolBarHeight && hY[i] < UI.height - UI.StatusBarHeight))
 		{
-			PrintMessage("the drawing will go out of the drawing area");
-			return;
-		}
+			PrintMessage("The drawing will go out of the drawing area");
+			break;
+		}*/
 		pWind->DrawPolygon(hX, hY, 6, style);
 	}
 	

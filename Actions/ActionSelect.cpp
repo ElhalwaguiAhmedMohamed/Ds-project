@@ -1,6 +1,7 @@
 #include "ActionSelect.h"
 #include <iostream>
-#include "ActionDelete.h"
+#include "ActionPlayWithColors.h"
+#include "ActionPlayWithShapes.h"
 #include "..\ApplicationManager.h"
 #include <string>
 #include <iostream>
@@ -14,7 +15,7 @@ ActionSelect::ActionSelect(ApplicationManager* pApp) :Action(pApp) ///constructo
 void ActionSelect::Execute()
 {
 	int* selectedFigCount = pManager->getSelectedFigCount();
-	if (UI.InterfaceMode == MODE_DRAW) {
+	if (UI.InterfaceMode == MODE_DRAW || UI.InterfaceMode == MODE_COLOR || UI.InterfaceMode == MODE_FILL_COLOR) {
 		int cx;
 		int cy;
 
@@ -55,7 +56,8 @@ void ActionSelect::Execute()
 			}
 		}
 	}
-	else if (UI.InterfaceMode == MODE_PLAY) { ///selecting in playmode to delete the sahpe after selection
+	else if (UI.InterfaceMode == MODE_PLAY) {
+		///selecting in playmode to delete the shape after selection
 		int cx;
 		int cy;
 
@@ -67,60 +69,21 @@ void ActionSelect::Execute()
 
 		if (fig != NULL)
 		{
-
-			if (fig->IsSelected())
+			if (pManager->getSelectedCasePlay() == 1)
 			{
-				fig->ChngDrawClr(fig->ChngSelectClr());
-				fig->SetSelected(false);
-				*selectedFigCount = *selectedFigCount - 1;
-				pGUI->ClearStatusBar();
+				Action* newAct = new ActionPlayWithShapes(pManager);
 			}
-			else
+			else if (pManager->getSelectedCasePlay() == 2)
 			{
-				fig->ChngSelectClr(fig->GetCurrentDrawClr());
-				fig->ChngDrawClr(CADETBLUE);
-				fig->SetSelected(true);
-				*selectedFigCount = *selectedFigCount + 1;
-				pGUI->PrintMessage(fig->ShowFigureDetails());
-				if (fig->getShapeType() == 's') {
-					selectedSquares++;
-				}
-				else if (fig->getShapeType() == 'h') {
-					selectedHexagons++;
-				}
-				else {
-					selectedEllipses++;
-				}
+				Action* newAct = new ActionPlayWithColors(pManager);
 			}
-		}
-		else
-		{
-
-			CFigure* selectedFiguer = pManager->GetSelectedFigure();
-			if (selectedFiguer != NULL) {
-				selectedFiguer->ChngDrawClr(selectedFiguer->ChngSelectClr());
-				selectedFiguer->SetSelected(false);
-				*selectedFigCount = *selectedFigCount - 1;
-				pGUI->ClearStatusBar();
+			else if (pManager->getSelectedCasePlay() == 3)
+			{
+				// Implement your Action here and put this statment inside it
+				//pManager->setSelectedCasePlay(3);
+				// Load a file at the beginnig of the function (You can see playwithcolors action to see what i mean)
 			}
-		}
-		Action* newAct = new ActionDelete(pManager);
-		pManager->ExecuteAction(newAct);
-		//showing the game score 
-		/*cout << pManager->getSquareCount() << endl << selectedSquares << endl;
-		cout << pManager->getEllipseCount() << endl << selectedEllipses << endl;
-		cout << pManager->getHexCount() << endl << selectedHexagons << endl;*/
-		if (selectedSquares == pManager->getSquareCount() && pManager->getSquareCount() != 0) {
-			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + ", Wrong choices count is " + to_string(selectedEllipses + selectedHexagons) + " and number of Correct choices is " + to_string(selectedSquares) + " :)";
-			pGUI->PrintMessage(message);
-		}
-		else if (selectedEllipses == pManager->getEllipseCount() && pManager->getEllipseCount() != 0) {
-			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + ", Wrong choices count is " + to_string(selectedSquares + selectedHexagons) + " and number of Correct choices is " + to_string(selectedEllipses) + " :)";
-			pGUI->PrintMessage(message);
-		}
-		else if (selectedHexagons == pManager->getHexCount() && pManager->getHexCount() != 0) {
-			string message = "You choose " + to_string(selectedSquares) + " Squares and " + to_string(selectedEllipses) + " Ellipses and " + to_string(selectedHexagons) + " Hexagons" + ", Wrong choices count is " + to_string(selectedEllipses + selectedSquares) + " and number of Correct choices is " + to_string(selectedHexagons) + " :)";
-			pGUI->PrintMessage(message);
+			
 		}
 	}
 

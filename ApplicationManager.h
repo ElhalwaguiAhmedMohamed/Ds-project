@@ -13,7 +13,7 @@ class ApplicationManager
 	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
-	int FigCount,mode, selectedFigCount;		//Actual number of figures
+	int FigCount,mode, selectedFigCount,PlayModePlace;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	//Pointers to Input and Output classes
@@ -47,12 +47,12 @@ public:
 	void set_selected(CFigure*); //Setting Selected
 	void Unselect(CFigure*);   //Unselect all figures except a paritcular figure
 	void DeleteList();
-	void getFiguresColors(int*);
 	int getSquareCount();
 	int getEllipseCount();
 	int getHexCount();
-	
-
+	void getFiguresColors(int*);
+	int getSelectedCasePlay();// specify which game we play in action select
+	void setSelectedCasePlay(int);
 	void SendToBack(int selectedIndex);
 
 	void BringToFront(int selectedIndex);
@@ -61,7 +61,6 @@ public:
 	
 
 	int getSelectedFigure();
-	void Resize();
 
 	
 };

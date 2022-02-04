@@ -13,6 +13,7 @@ ActionPlayWithShapes::ActionPlayWithShapes(ApplicationManager* pMan) :Action(pMa
 void ActionPlayWithShapes::Execute() {
 	Action* newAct = new ActionLoad(pManager, 1);
 	newAct->Execute();
+	pManager->setSelectedCasePlay(1);
 	int squareCount = pManager->getSquareCount();
 	int ellipseCount = pManager->getEllipseCount();
 	int hexCount = pManager->getHexCount();

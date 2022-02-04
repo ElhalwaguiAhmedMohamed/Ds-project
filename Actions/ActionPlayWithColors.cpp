@@ -4,7 +4,6 @@
 #include "../ApplicationManager.h"
 ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pApp)
 {
-
 }
 
 void ActionPlayWithColors::Execute()
@@ -12,6 +11,7 @@ void ActionPlayWithColors::Execute()
 	// Load File saved from Draw Mode
 	Action* newAct = new ActionLoad(pManager,1);
 	newAct->Execute();
+	pManager->setSelectedCasePlay(2);
 	// getting figures colors count
 	int* figuresColors = new int[5]{ 0 };
 	pManager->getFiguresColors(figuresColors);
@@ -48,22 +48,22 @@ void ActionPlayWithColors::Execute()
 			}
 		} while (regenerate);
 		if (randomColorsGenerator == 1) {
-			pGui->PrintMessage("Choose Shapes with fill color \"RED\"");
+			pGui->PrintMessage("Pick Red Shapes");
 			
 		}
 		else if (randomColorsGenerator == 2) {
-			pGui->PrintMessage("Choose Shapes with fill color \"GREEN\"");
+			pGui->PrintMessage("Pick Green Shapes");
 		}
 		else if (randomColorsGenerator == 3) {
-			pGui->PrintMessage("Choose Shapes with fill color \"BLUE\"");
+			pGui->PrintMessage("Pick Blue Shapes");
 		}
 		else if (randomColorsGenerator == 4)
 		{
-			pGui->PrintMessage("Choose Shapes with fill color \"YELLOW\"");
+			pGui->PrintMessage("Pick Yellow Shapes");
 		}
 		else
 		{
-			pGui->PrintMessage("Choose Shapes with No Fill");
+			pGui->PrintMessage("Pick Shapes which are not filled");
 		}
 		
 	}

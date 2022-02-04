@@ -33,7 +33,7 @@ ApplicationManager::ApplicationManager() : mode(0)
 	
 	FigCount = 0;
 	selectedFigCount = 0;
-		
+	PlayModePlace = 0;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -374,6 +374,16 @@ void ApplicationManager::getFiguresColors(int* frequencyColor)
 			frequencyColor[4]++;
 	}
 	delete[] colors;
+}
+
+int ApplicationManager::getSelectedCasePlay()
+{
+	return PlayModePlace;
+}
+
+void ApplicationManager::setSelectedCasePlay(int place)
+{
+	PlayModePlace = place;
 }
 
 
