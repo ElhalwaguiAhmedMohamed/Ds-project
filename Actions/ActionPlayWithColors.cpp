@@ -1,7 +1,6 @@
 #include "ActionPlayWithColors.h"
+#include "ActionDelete.h"
 #include "../ApplicationManager.h"
-#include <vector>
-#include <iostream>
 ActionPlayWithColors::ActionPlayWithColors(ApplicationManager* pApp) :Action(pApp)
 {
 
@@ -62,5 +61,6 @@ void ActionPlayWithColors::Execute()
 		{
 			pGui->PrintMessage("Choose Shapes with No Fill");
 		}
+		
 	}
 }

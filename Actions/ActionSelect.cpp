@@ -34,10 +34,10 @@ void ActionSelect::Execute()
 	}
 	else {
 
-		CFigure* selectedFiguer = pManager->GetSelectedFigure();
-		if (selectedFiguer != NULL) {
-			selectedFiguer->ChngDrawClr(selectedFiguer->ChngSelectClr());
-			selectedFiguer->SetSelected(false);
+		CFigure* selectedFigure = pManager->GetSelectedFigure();
+		if (selectedFigure != NULL) {
+			selectedFigure->ChngDrawClr(selectedFigure->ChngSelectClr());
+			selectedFigure->SetSelected(false);
 			pGUI->ClearStatusBar();
 		}
 	}
