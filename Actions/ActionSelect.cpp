@@ -5,9 +5,13 @@
 #include "..\ApplicationManager.h"
 #include <string>
 #include <iostream>
+int ActionSelect::selectedEllipses = 0;
+int ActionSelect::selectedHexagons = 0;
+int ActionSelect::selectedSquares = 0;
+
 ActionSelect::ActionSelect(ApplicationManager* pApp) :Action(pApp) ///constructor chaining
 {
-
+	
 }
 
 void ActionSelect::Execute()
@@ -67,25 +71,24 @@ void ActionSelect::Execute()
 
 		if (fig != NULL)
 		{
-			fig->SetSelected(true);
-			if (pManager->getSelectedCasePlay() == 1)
+			int playType = pManager->getSelectedCasePlay();
+			if (playType == 1)
 			{
-				ActionPlayWithShapes* newAct = new ActionPlayWithShapes(pManager);
-				newAct->Continue(fig);
+				pGUI->PrintMessage("selected");
+				ActionPlayWithShapes* playWithShapes = new ActionPlayWithShapes(pManager);
+				playWithShapes->ExecuteSelected(fig);
 			}
-			else if (pManager->getSelectedCasePlay() == 2)
+			else if (playType == 2)
 			{
-				ActionPlayWithColors*newAct = new ActionPlayWithColors(pManager);
-				newAct->ExecuteSelected(fig);
+				ActionPlayWithColors* playWithColors = new ActionPlayWithColors(pManager);
+				playWithColors->Execute();
 			}
-			else if (pManager->getSelectedCasePlay() == 3)
+			else if (playType == 3)
 			{
-				// Implement your Action here and put this statment inside it
-				//pManager->setSelectedCasePlay(3);
-				// Load a file at the beginnig of the function (You can see playwithcolors action to see what i mean)
 			}
-
 		}
 	}
 
 }
+
+

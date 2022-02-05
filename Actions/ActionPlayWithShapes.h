@@ -9,6 +9,7 @@ private:
 public:
 	ActionPlayWithShapes(ApplicationManager* pMan);
 	virtual void Execute();
-	void Continue(CFigure*);
+	virtual void ExecuteSelected(CFigure* fig);
+	
 };
 
