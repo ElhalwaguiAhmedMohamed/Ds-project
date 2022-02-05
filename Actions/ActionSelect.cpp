@@ -67,13 +67,16 @@ void ActionSelect::Execute()
 
 		if (fig != NULL)
 		{
+			fig->SetSelected(true);
 			if (pManager->getSelectedCasePlay() == 1)
 			{
-				Action* newAct = new ActionPlayWithShapes(pManager);
+				ActionPlayWithShapes* newAct = new ActionPlayWithShapes(pManager);
+				newAct->Continue(fig);
 			}
 			else if (pManager->getSelectedCasePlay() == 2)
 			{
-				Action* newAct = new ActionPlayWithColors(pManager);
+				ActionPlayWithColors*newAct = new ActionPlayWithColors(pManager);
+				newAct->ExecuteSelected(fig);
 			}
 			else if (pManager->getSelectedCasePlay() == 3)
 			{

@@ -1,5 +1,6 @@
 #pragma once
 #include "Action.h"
+#include "../Figures/CFigure.h"
 class ActionPlayWithShapes : public Action
 {
 private:
@@ -8,6 +9,6 @@ private:
 public:
 	ActionPlayWithShapes(ApplicationManager* pMan);
 	virtual void Execute();
-	
+	void Continue(CFigure*);
 };
 

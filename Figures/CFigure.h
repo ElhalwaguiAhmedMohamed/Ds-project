@@ -30,13 +30,13 @@ public:
 	virtual void Save(ofstream&) = 0; //Save Figure
 	virtual void Load(ifstream&) = 0;	 // Load Figure
 	virtual color StringToColor(string s) ;
-	color GetCurrentDrawClr();	//Get the current figure's fill color
-	color GetCurrentFillClr();
+	color virtual GetCurrentDrawClr();	//Get the current figure's fill color
+	color virtual GetCurrentFillClr();
 	void ChngSelectClr(color Dclr);	//changes the figure's selection color
 	color ChngSelectClr();	//changes the figure's selection color
 	string ColorToString(color c);
-	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
-	void ChngFillClr(color Fclr);	//changes the figure's filling color
+	void virtual ChngDrawClr(color Dclr);	//changes the figure's drawing color
+	void virtual ChngFillClr(color Fclr);	//changes the figure's filling color
 	virtual void Resize(float) = 0;
 	//virtual string PrintInfo(GUI* pOut) = 0;	//print all figure info on the status bar
 	void assignStored();

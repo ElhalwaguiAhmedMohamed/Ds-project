@@ -57,3 +57,8 @@ void ActionPlayWithShapes::Execute() {
 	
 
 }
+
+void ActionPlayWithShapes::Continue(CFigure* fig)
+{
+
+}
