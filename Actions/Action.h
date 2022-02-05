@@ -2,7 +2,7 @@
 #define ACTION_H
 
 #include "..\DefS.h"
-
+#include "../Figures/CFigure.h"
 class ApplicationManager; //forward class declaration
 
 
@@ -19,7 +19,7 @@ public:
 
 	//Execute action (code depends on action type)
 	virtual void Execute() =0; ///pure virtual function
-
+	//virtual void ExecuteSelected(CFigure* fig);
 	//To undo this action (code depends on action type)
 	//virtual void Undo()=0;
 
