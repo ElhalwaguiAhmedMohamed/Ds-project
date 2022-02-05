@@ -119,7 +119,3 @@ void ActionPlayWithShapes::ExecuteSelected(CFigure* fig) {
 	}
 }
 
-void ActionPlayWithShapes::Continue(CFigure* fig)
-{
-
-}

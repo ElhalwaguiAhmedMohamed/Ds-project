@@ -72,16 +72,18 @@ void ActionSelect::Execute()
 		if (fig != NULL)
 		{
 			int playType = pManager->getSelectedCasePlay();
+			fig->SetSelected(true);
 			if (playType == 1)
 			{
 				pGUI->PrintMessage("selected");
+
 				ActionPlayWithShapes* playWithShapes = new ActionPlayWithShapes(pManager);
 				playWithShapes->ExecuteSelected(fig);
 			}
 			else if (playType == 2)
 			{
 				ActionPlayWithColors* playWithColors = new ActionPlayWithColors(pManager);
-				playWithColors->Execute();
+				playWithColors->ExecuteSelected(fig);
 			}
 			else if (playType == 3)
 			{
