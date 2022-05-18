@@ -33,10 +33,7 @@ void ActionSave::Execute()
 
 		outputfile.close();
 	}
-	/*if (outputfile.fail()) {
-		pGui->PrintMessage("Wrong file name :(");
-		return;
-	}*/
+	
 	
 	
 }

@@ -8,6 +8,7 @@ ActionResize::ActionResize(ApplicationManager* pApp, CFigure* selected) :Action(
 void ActionResize::ReadActionParameters() {
 
 }
+//Action Resize
 void ActionResize::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
