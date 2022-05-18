@@ -41,7 +41,7 @@ void ActionAddEllipse::Execute()
 	}
 	else
 	{
-		//Step 2 - prepare square data
+		//Step 2 - prepare ellipse data getting two points from the user to draw illusionary square and draw the ellipse inside it
 		//User has entered two points P1&P2
 		//2.1- Identify the Top left corner of the square
 		Point po1;
@@ -52,10 +52,10 @@ void ActionAddEllipse::Execute()
 		po2.x = P2.x > P1.x ? P2.x : P1.x;
 		po2.y = P2.y > P1.y ? P2.y : P1.y;
 
-		//Step 3 - Create a Square with the parameters read from the user
+		//Step 3 - Create an ellipse with the parameters read from the user
 		CEllipse* R = new CEllipse(po1, po2, SqrGfxInfo);
 
-		//Step 4 - Add the Square to the list of figures
+		//Step 4 - Add the Ellipse to the list of figures
 		pManager->AddFigure(R);
 	}
 }
